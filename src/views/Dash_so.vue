@@ -85,7 +85,7 @@ export default{
           { text: 'Date Submitted', value: 'datesub' },
           { text: 'Status', value: 'stat' }
         ],
-title: [
+      title: [
           {
             evenum:'0001',
            
@@ -132,11 +132,15 @@ title: [
             stat:'For Completion'
           },
           ]
-        }
-        
-  }
-
-   
+        }   
+      },
+    mounted() {
+    fetch("http://127.0.0.1:8000/api/events",{ 
+      method:'get', 
+      headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU2OTgxMzU3NywiZXhwIjoxNTY5ODQ5NTc3LCJuYmYiOjE1Njk4MTM1NzcsImp0aSI6Imh5em5JSjlFWDllMDV2OGwiLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.7saIOmisKWMsaL2p2pHVpVN_JAzyYHyFjEugRJg4wjU"} })
+      .then(function(response){return(response.json)})
+      .then(function(data){console.log(data)});
+    }
 }
 </script>
 
