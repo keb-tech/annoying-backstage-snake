@@ -25,6 +25,8 @@ import PasswordSO from './views/SO/Password_so.vue'
 import forgotpassword from './views/forgotpassword.vue'
 import certificateresult from './views/OSA/certificateresult.vue'
 
+import usersList from './views/OSA/usersList.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -159,6 +161,11 @@ export default new Router({
       path: "/password_socc",
       name: "PasswordSOCC",
       component: PasswordSOCC
+    },
+    {
+      path: "/usersList",
+      name: "usersList",
+      component: usersList
     }
   ]
 })

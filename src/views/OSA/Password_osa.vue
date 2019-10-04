@@ -92,7 +92,7 @@ export default {
 <style>
 #inspire {
      /*background-image: url('../assets/hands_joined_team.jpeg');*/
-     background-color: #E0E0E0; 
+    background-color: #E0E0E0; 
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;

@@ -135,10 +135,11 @@ export default{
         }   
       },
     mounted() {
-    fetch("http://127.0.0.1:8000/api/events",{ 
+    fetch( "http://127.0.0.1:8000/api/events",
+    { 
       method:'get', 
-      headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU2OTgxMzU3NywiZXhwIjoxNTY5ODQ5NTc3LCJuYmYiOjE1Njk4MTM1NzcsImp0aSI6Imh5em5JSjlFWDllMDV2OGwiLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.7saIOmisKWMsaL2p2pHVpVN_JAzyYHyFjEugRJg4wjU"} })
-      .then(function(response){return(response.json)})
+      headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU2OTgyNDg3NCwiZXhwIjoxNTY5ODYwODc0LCJuYmYiOjE1Njk4MjQ4NzQsImp0aSI6IlE4d3VWeDhpTW5VYUdlcjciLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.0d_ZGH_O5nV-QDRr794xjFHQCIYWtHcxMM14Jcr0MtE"} })
+      .then(function(response){return(response.json())})
       .then(function(data){console.log(data)});
     }
 }

@@ -9,7 +9,7 @@
 </v-btn>
 </v-toolbar-title>
 <v-spacer></v-spacer>
-<h1 class="font-weight-regular title white--text">Office for Student Affairs</h1>
+<h1 class="font-weight-regular title white--text">{{currentUser.last_name + ', ' + currentUser.first_name}}</h1>
 </v-toolbar>
 
 <v-navigation-drawer :clipped="$vuetify.breakpoint.width > 1264" :fixed="drawer.fixed" :permanent="drawer.permanent" :mini-variant="drawer.mini" width="250" v-model="drawer.open"
@@ -19,6 +19,7 @@
 </v-layout>
 <v-list>
   <v-flex class="mt-2">
+
 <v-list-tile to="/dashboard_osa">
     <v-list-tile-action>
       <v-icon class="white--text">dashboard</v-icon>
@@ -27,6 +28,7 @@
         <v-list-tile-title class="white--text">Dashboard</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
+
 <v-list-tile to="/postER_osa">
     <v-list-tile-action>
       <v-badge overlap left color="red" small v-model="show"><span slot="badge">1</span>
@@ -37,6 +39,7 @@
         <v-list-tile-title class="white--text">Notifications</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
+
 <v-list-tile to="/accounts">
     <v-list-tile-action>
       <v-icon class="white--text">group_add</v-icon>
@@ -45,6 +48,16 @@
         <v-list-tile-title class="white--text">Accounts Management</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
+
+<v-list-tile to="/usersList">
+    <v-list-tile-action>
+      <v-icon class="white--text">group_add</v-icon>
+         </v-list-tile-action>
+        <v-list-tile-content>
+        <v-list-tile-title class="white--text">Users List</v-list-tile-title>
+    </v-list-tile-content>
+</v-list-tile>
+
 <v-list-tile to="/certificate">
     <v-list-tile-action>
       <v-icon class="white--text">search</v-icon>
@@ -66,7 +79,7 @@
 
 
 
-<v-list-tile to="/login">
+<v-list-tile @click="logoutUser">
     <v-list-tile-action>
       <v-icon class="white--text">exit_to_app</v-icon>
          </v-list-tile-action>
@@ -81,7 +94,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
+    computed: {
+      ...mapState(['currentUser'])
+    },
     data(){
         return{
     drawer: {
@@ -110,6 +127,9 @@ export default {
     methods: {
     toggleMiniDrawer () {
       this.drawer.mini = !this.drawer.mini
+    },
+    logoutUser () {
+      this.$store.dispatch("logoutUser");
     }
     }
 }
