@@ -1,14 +1,8 @@
 <template>
-<v-app>
+<v-app class="pa-4">
   <Navbar/>
 <v-content>
-
-<div>
-<p></p>
-<p></p>
-
-
-<v-card>
+<v-card class="mt-4">
     <v-card-title>
      <h1 class="headline font-weight-black pa-2">Dashboard</h1>
      <v-btn flat @click="submit" class="success my-3" to="/newproject" >Add Project</v-btn>
@@ -16,8 +10,6 @@
       <v-flex xs12 md4>
       <v-text-field v-model="search" append-icon="search" label="Search"  single-line hide-detail></v-text-field>
       </v-flex>
-    
-   
    </v-card-title>
 <v-data-table :headers="headers" :items="title" :search="search" class="elevation-1">
       <template v-slot:items="props">
@@ -49,7 +41,7 @@
       </template>
       </v-data-table>  
 </v-card>
-</div>
+
 </v-content>
 </v-app>
 </template>
@@ -85,7 +77,7 @@ export default{
           { text: 'Date Submitted', value: 'datesub' },
           { text: 'Status', value: 'stat' }
         ],
-      title: [
+title: [
           {
             evenum:'0001',
            
@@ -132,16 +124,11 @@ export default{
             stat:'For Completion'
           },
           ]
-        }   
-      },
-    mounted() {
-    fetch( "http://127.0.0.1:8000/api/events",
-    { 
-      method:'get', 
-      headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU2OTgyNDg3NCwiZXhwIjoxNTY5ODYwODc0LCJuYmYiOjE1Njk4MjQ4NzQsImp0aSI6IlE4d3VWeDhpTW5VYUdlcjciLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.0d_ZGH_O5nV-QDRr794xjFHQCIYWtHcxMM14Jcr0MtE"} })
-      .then(function(response){return(response.json())})
-      .then(function(data){console.log(data)});
-    }
+        }
+        
+  }
+
+   
 }
 </script>
 

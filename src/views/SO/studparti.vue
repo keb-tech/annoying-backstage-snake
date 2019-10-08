@@ -1,5 +1,5 @@
 <template>
-<v-app>
+<v-app class="pa-4">
   <Navbar/>
   <v-content>
   <div>
@@ -42,15 +42,12 @@
                   <v-text-field v-model="editedItem.mname" label="Middle Initial"></v-text-field>
                 </v-flex>
                  </v-layout>
-             
-            
             </v-container>
-            
           </v-card-text>
            <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" flat @click="save">Save</v-btn>
-            <v-btn color="blue darken-1" flat @click="close">Cancel</v-btn>
+            <v-btn color="blue darken-1" flat @click="close">CANCEL</v-btn>
+            <v-btn color="blue darken-1" flat @click="add">ADD</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -79,12 +76,14 @@
       </template>
       
     </v-data-table>
-    
-    <v-btn flat @click="snackbar=true" class="green mx-3 mt-3" color="white">Submit</v-btn>
-    <v-btn flat @click="back" class="error mr-3 mt-3" to="/newproject" >Back</v-btn>
-    <v-btn flat @click="save" class="warning mr-3 mt-3" to="/dashboard_so" >Save</v-btn>
-         
-     
+    <v-card-actions>
+      
+    <v-btn flat @click="back" class="red white--text mr-3 mt-3" to="/newproject">Back</v-btn>
+    <v-spacer></v-spacer>
+    <v-btn flat @click="save" class="warning mr-3 mt-3" to="/dashboard_so">Save</v-btn>
+    <div class="flex-grow-1"></div>
+    <v-btn flat @click="snackbar=true" class="green mt-3" color="white">Submit</v-btn>    
+    </v-card-actions>
 
 <v-snackbar
       v-model="snackbar" :bottom="y === 'bottom'" :left="x === 'left'" :multi-line="mode === 'multi-line'" :right="x === 'right'"

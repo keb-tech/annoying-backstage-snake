@@ -50,13 +50,11 @@
             @click:append="show3 = !show3"
           ></v-text-field>
                   </v-flex>
-                
-                
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="green white--text">Change</v-btn> <v-btn class="ml-2" color="red white--text">Cancel</v-btn>
+                <v-btn class="ml-2" color="red white--text">Cancel</v-btn><v-btn color="green white--text">Change</v-btn> 
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -92,7 +90,7 @@ export default {
 <style>
 #inspire {
      /*background-image: url('../assets/hands_joined_team.jpeg');*/
-    background-color: #E0E0E0; 
+     background-color: #E0E0E0; 
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;

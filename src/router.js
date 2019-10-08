@@ -1,28 +1,35 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import LoginComponent from './views/Login.vue'
+
 import DashboardSO from './views/Dash_so.vue'
 import DashboardSOCC from './views/Dash_socc.vue'
 import DashboardOSA from './views/Dash_osa.vue'
+
 import AccountsOSA from './views/OSA/accounts.vue'
 import CertificateOSA from './views/OSA/certificate.vue'
 import postER_OSA from './views/OSA/postER_osa.vue'
 import report_OSA from './views/OSA/report_osa.vue'
 import SPReport_OSA from './views/OSA/SPReport_osa.vue'
+import SearchFile from './views/SOCC/searchfile.vue'
+
 import PaperVali from './views/SOCC/papervali.vue'
 import PostER_SOCC from './views/SOCC/postER_socc.vue'
 import report_SOCC from './views/SOCC/report_socc.vue'
 import SPReport_SOCC from './views/SOCC/SPReport_socc.vue'
+
 import NewProject from './views/SO/newproject.vue'
 import reportfeedback from './views/SO/reportfeedback.vue'
 import saveddrafts from './views/SO/saveddrafts.vue'
 import Project from './views/SO/Projects.vue'
 import StudentPartiSO from './views/SO/studparti.vue'
-import SearchFile from './views/SOCC/searchfile.vue'
+
+
 import PasswordOSA from './views/OSA/Password_osa.vue'
 import PasswordSOCC from './views/SOCC/Password_socc.vue'
 import PasswordSO from './views/SO/Password_so.vue'
-import forgotpassword from './views/forgotpassword.vue'
+
 import certificateresult from './views/OSA/certificateresult.vue'
 
 import usersList from './views/OSA/usersList.vue'
@@ -151,11 +158,6 @@ export default new Router({
       path: "/password_so",
       name: "PasswordSO",
       component: PasswordSO
-    },
-    {
-      path: "/forgotpassword",
-      name: "forgotpassword",
-      component: forgotpassword
     },
     {
       path: "/password_socc",

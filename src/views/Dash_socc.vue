@@ -1,11 +1,8 @@
 <template>
-<v-app>
+<v-app class="pa-4">
   <Navbar/>
 <v-content>
-<div>
-<p></p>
-<p></p>
-
+<v-card class="mt-4">
     <v-card-title>
      <h1 class="headline font-weight-black pa-2">Dashboard</h1>
       <v-spacer></v-spacer>
@@ -33,7 +30,7 @@
       </template>
       </v-data-table>
        
-</div>
+</v-card>
 
 </v-content>
 </v-app>

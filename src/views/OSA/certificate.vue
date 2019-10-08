@@ -1,36 +1,37 @@
 <template>
-<v-app>
+<v-app class="pa-4">
 <Navbar/>
-<v-content>
- <div id="app">
-  <v-app>
-      <v-container bg grid-list-lg text-xs-center>
-        <v-layout>
-          <div class="display-1">
-              Student Activity Records
-           </div>
-           <v-spacer></v-spacer>
+<v-content class="mt-4">
+  <v-card class="my-auto width:1000px">
+    <v-card-title>
+     <h1 class="headline font-weight-black pa-2 mr-4">Student Activity Records</h1>
+      <v-flex md5>
+      <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-detail></v-text-field>
+      </v-flex>
+      <v-spacer></v-spacer>
+      <v-flex sm2>
+      <v-overflow-btn class="ml-3 mr-2" height="35px" editable :items="items" label="Search by"></v-overflow-btn>
+      </v-flex>
+        <div class="flex-grow-1"></div>
+      <v-flex>
+      <v-btn color="green white--text" class="ml-3 mt-0" @click="show1" height="35px" to="/certificateresult">Advanced Search</v-btn></v-flex>
+      </v-card-title>
+     <!-- 
+           
         </v-layout>
         <v-layout row align-center wrap>
-          <v-flex xs6>
-            <v-text-field solo label="Search" append-icon="search" hide-details></v-text-field>
-          </v-flex>
-           <v-flex xs6 sm3 d-flex>
-
-        <v-overflow-btn :items="items" label="Search by"></v-overflow-btn>
-      </v-flex>
-      <v-btn color="green white--text" @click="show1" to="/certificateresult">Advanced Search</v-btn>
+          
+     
       
+      -->
           <!-- <v-btn v-show="!show1" color="green white--text">PRINT</v-btn>
           <v-btn v-show="!show1" color="green white--text">DOWNLOAD</v-btn> -->
       
-          <v-spacer></v-spacer>
+         <!-- <v-spacer></v-spacer>
           
         </v-layout>
-      </v-container>  
-  </v-app>
-   
-</div>
+      </v-container>  -->
+  </v-card>
 </v-content>
 </v-app>
 </template>

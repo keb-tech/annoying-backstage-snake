@@ -1,52 +1,74 @@
 <template>
-<v-app>
+<v-app class="pa-4">
   <Navbar/>
-  <v-content>
-  <div class="projects">
-    <h1 class="headline grey--text pa-3">Projects</h1>
-    <v-container class="my-5">
-      <v-expansion-panel>
-        <v-expansion-panel-content v-for="project in myProjects" :key="project.title">
-          <div slot="header" class="py-1">{{ project.title }}</div>
-          <v-card>
-            <v-card-text class="px-4 grey--text">
-              <div class="font-weight-bold">Date Submitted: {{ project.date }}</div>
-              <div>{{ project.content }}</div>
-            </v-card-text>
-          </v-card>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-container>
-    
-  </div>
+  <v-content class="mt-4">
+          <v-card class="my-auto width:1000px">
+            <v-card-title>
+    <h1 class="headline font-weight-black pa-2">Projects</h1><v-spacer></v-spacer>
+      <v-flex xs12 md4>
+      <v-text-field v-model="searchinfo" append-icon="search" label="Search" single-line hide-detail></v-text-field>
+      </v-flex></v-card-title>
+      <v-divider></v-divider>
+          <v-list two-line>
+            <template v-for="(item, index) in items">
+              <v-list-tile :key="item.title">
+                <v-list-tile-content>
+                  <v-list-tile-title>
+                    {{ item.headline }}
+                   </v-list-tile-title>
+                   <v-list-tile-title>
+                    {{item.title}}
+                  </v-list-tile-title>
+                </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-btn class="pa-2"
+                    color="success"
+                  >
+                    See Report
+                  </v-btn>
+                </v-list-tile-action>
+              </v-list-tile>
+              <v-divider
+                v-if="index + 1 < items.length"
+                :key="index"
+              ></v-divider>
+            </template>
+          </v-list>
+        </v-card>
   </v-content>
 </v-app>
 </template>
 
 <script>
 import Navbar from '@/components/navbar_so'
-
 export default{
   name: 'Navbar_SO',
   components: { Navbar },
-  data() {
-    return {
-      projects: [
-        { title: 'Event Name 1', enum:'0001', date: 'January 20, 2018',year:'2017-2018', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-        { title: 'Event Name 2', enum:'0002', date: 'January 23, 2018',year:'2017-2018', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-        { title: 'Event Name 3', enum:'0003', date: 'January 23, 2018',year:'2017-2018', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-        { title: 'Event Name 4', enum:'0004', date: 'January 23, 2018',year:'2017-2018', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-        { title: 'Event Name 5', enum:'0005', date: 'January 19, 2018',year:'2017-2018', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},      
-      ]
+ data() {
+   return{
+      searchinfo:'',
+      items: [
+        {
+          action: 'October 5, 2019',
+          headline: 'Student Organization1',
+          title: 'Event Name',
+        },
+        {
+          action: 'October 23, 2019',
+          headline: 'Student Organization2',
+          title: 'Event Name',
+         
+        }
+       ]
     }
   },
 
-   computed: {
-    myProjects() {
-      return this.projects.filter(project=> {
-        return project.status == 'ongoing'
-      })
+  methods: {
+    toggle (index) {
+      const i = this.selected.indexOf(index)
+
+     
     }
   }
 }
-</script>
+    </script>

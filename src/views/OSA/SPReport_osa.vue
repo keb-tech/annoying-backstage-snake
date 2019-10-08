@@ -1,5 +1,5 @@
 <template>
-<v-app>
+<v-app class="pa-4">
   <Navbar/>
   <v-content>
   <div>
@@ -54,11 +54,12 @@
         <td class="justify-center layout px-0"></td>
       </template>
     </v-data-table>
-    
-    <v-btn flat @click="snackbar = true" class="green mr-2 mt-3" color="white">APPROVE ENDORSEMENT</v-btn>
+    <v-layout>
+      <v-spacer></v-spacer>
     <v-btn flat @click="snackbar2= true" class="red mr-2 mt-3" color="white" >FOR COMPLETION</v-btn>
     <v-btn flat @click="back" class="primary mr-2 mt-3" to="/report_osa" >BACK</v-btn>
-     
+    <v-btn flat @click="snackbar = true" class="green mr-2 mt-3" color="white">APPROVE ENDORSEMENT</v-btn>
+     </v-layout>
     <v-snackbar
       v-model="snackbar" :bottom="y === 'bottom'" :left="x === 'left'" :multi-line="mode === 'multi-line'" :right="x === 'right'"
       :timeout="timeout" :top="y === 'top'" :vertical="mode === 'vertical'" color="green"> Post-event report added.

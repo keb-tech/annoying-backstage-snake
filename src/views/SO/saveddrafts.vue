@@ -1,26 +1,46 @@
 <template>
-<v-app>
+<v-app class="pa-4">
   <Navbar/>
-  <v-content>
+  <v-content class="mt-4">
   <div class="drafts">
-    <h1 class="headline grey--text pa-3">Saved Drafts</h1>
-    <v-container class="my-5">
-      <v-expansion-panel>
-        <v-expansion-panel-content v-for="drafts in drafts" :key="drafts.event">
-          <div slot="header" class="py-1">{{ drafts.event }}</div>
-          <v-card>
-            <v-card-text class="px-2 black--text">
-              <div class="font-weight-bold">Date Saved: {{ drafts.date }}</div>
-              <div>{{ drafts.content }}</div>
-              <div> <v-btn color="green white--text" @click="edit">Edit Report</v-btn> </div>
-            </v-card-text>
-          </v-card>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-container>
-    
-
-
+     <v-card class="my-auto width:1000px">
+    <v-card-title>
+    <h1 class="headline font-weight-black pa-2">Saved Drafts</h1><v-spacer></v-spacer>
+      <v-flex xs12 md4>
+      <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-detail></v-text-field>
+      </v-flex></v-card-title>
+   <v-divider></v-divider>
+          <v-list two-line>
+            <template v-for="(item, index) in items">
+              <v-list-tile :key="item.title">
+                <v-list-tile-content>
+                  <v-list-tile-title>
+                    {{ item.headline }}
+                   </v-list-tile-title>
+                   <v-list-tile-title>
+                    {{item.title}}
+                  </v-list-tile-title>
+                </v-list-tile-content>
+                <v-list-tile-action>
+                <v-btn flat icon color="red">
+              <v-icon>delete</v-icon>
+            </v-btn></v-list-tile-action>
+                  <v-list-tile-action>
+                    <v-btn flat icon class="pa-2" color="success">
+              <v-icon>edit</v-icon>
+            </v-btn>
+                 
+                </v-list-tile-action>
+              </v-list-tile>
+              <v-divider
+                v-if="index + 1 < items.length"
+                :key="index"
+              ></v-divider>
+            </template>
+          </v-list>
+      </v-card>
+ 
+     
   </div>
   </v-content>
 </v-app>
@@ -34,12 +54,19 @@ export default{
   components: { Navbar },
   data() {
     return {
-      drafts: [
+       items: [
         {
-            event: 'Event Name 0',
-            date: 'January 18, 2019',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'}
-      ]
+          action: 'October 5, 2019',
+          headline: 'Student Organization1',
+          title: 'Event Name',
+        },
+        {
+          action: 'October 23, 2019',
+          headline: 'Student Organization2',
+          title: 'Event Name',
+         
+        }
+       ]
     }
   },
 
@@ -49,6 +76,14 @@ export default{
         return drafts.status == 'Denied'
       })
     }
-  }
+  },
+  methods: {
+    toggle (index) {
+      const i = this.selected.indexOf(index)
+
+     
+    }
+    }
+
 }
 </script>

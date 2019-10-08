@@ -54,7 +54,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="green white--text">Change</v-btn> <v-btn class="ml-2" color="red white--text">Cancel</v-btn>
+                 <v-btn class="ml-2" color="red white--text">Cancel</v-btn><v-btn color="green white--text">Change</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>

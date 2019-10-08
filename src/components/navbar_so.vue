@@ -13,7 +13,7 @@
 </v-toolbar>
  
 <v-navigation-drawer :clipped="$vuetify.breakpoint.width > 1264" :fixed="drawer.fixed" :permanent="drawer.permanent" :mini-variant="drawer.mini" :width="250" v-model="drawer.open"
-      app class="yellow darken-3"> 
+      app class="yellow lighten-1"> 
  <v-layout column align-center>    
  </v-layout>
 
@@ -21,58 +21,58 @@
     <v-flex class="mt-2">
 <v-list-tile to="/dashboard_so">
     <v-list-tile-action>
-      <v-icon class="white--text">dashboard</v-icon>
+      <v-icon class="black--text">dashboard</v-icon>
          </v-list-tile-action>
         <v-list-tile-content>
-        <v-list-tile-title class="white--text">Dashboard</v-list-tile-title>
+        <v-list-tile-title class="black--text">Dashboard</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
 
 <v-list-tile to="/Projects">
     <v-list-tile-action>
-      <v-icon class="white--text">folder</v-icon>
+      <v-icon class="black--text">folder</v-icon>
          </v-list-tile-action>
         <v-list-tile-content>
-        <v-list-tile-title class="white--text">Projects</v-list-tile-title>
+        <v-list-tile-title class="black--text">Projects</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
 
 <v-list-tile to="/saveddrafts">
     <v-list-tile-action>
-      <v-icon class="white--text">edit</v-icon>
+      <v-icon class="black--text">edit</v-icon>
          </v-list-tile-action>
         <v-list-tile-content>
-        <v-list-tile-title class="white--text">Drafts</v-list-tile-title>
+        <v-list-tile-title class="black--text">Drafts</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
 
 <v-list-tile to="/reportfeedback">
     <v-list-tile-action>
       <v-badge overlap left color="red" small v-model="show"><span slot="badge">1</span>
-      <v-icon class="white--text">feedback</v-icon>
+      <v-icon class="black--text">feedback</v-icon>
       </v-badge>
          </v-list-tile-action>
         <v-list-tile-content >
-        <v-list-tile-title class="white--text">Report Feedback</v-list-tile-title>
+        <v-list-tile-title class="black--text">Report Feedback</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
 
 <v-list-tile to="/Password_so">
     <v-list-tile-action>
-      <v-icon class="white--text">lock</v-icon>
+      <v-icon class="black--text">lock</v-icon>
          </v-list-tile-action>
         <v-list-tile-content>
-        <v-list-tile-title class="white--text">Change Password</v-list-tile-title>
+        <v-list-tile-title class="black--text">Change Password</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
 
 
 <v-list-tile to="/Login">
     <v-list-tile-action>
-      <v-icon class="white--text">exit_to_app</v-icon>
+      <v-icon class="black--text">exit_to_app</v-icon>
          </v-list-tile-action>
         <v-list-tile-content >
-        <v-list-tile-title class="white--text">Sign Out</v-list-tile-title>
+        <v-list-tile-title class="black--text">Sign Out</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
 </v-flex>

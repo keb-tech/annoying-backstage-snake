@@ -1,11 +1,8 @@
 <template>
-<v-app>
+<v-app class="pa-4">
 <Navbar/>
 <v-content>
-<div> 
-<p></p>
-<p></p>
-<v-card>
+<v-card class="mt-4">
     <v-card-title>
      <h1 class="headline font-weight-black pa-2">Dashboard</h1>
       <v-spacer></v-spacer>
@@ -16,9 +13,8 @@
     <v-data-table :headers="headers" :items="title"  :search="search" class="elevation-1">
     <template v-slot:items="props">
       <td>{{ props.item.evenum }}</td>
-       <td class="text-xs-left">{{ props.item.event}}</td>
+      <td class="text-xs-left">{{ props.item.event}}</td>
       <td> {{props.item.organization}}</td>
-      
        <td>{{ props.item.college }}</td>
       <td class="text-xs-left">{{ props.item.year}}</td>
       <td class="text-xs-left">{{ props.item.sem}}</td>
@@ -34,7 +30,6 @@
       </template>
       </v-data-table>  
 </v-card>
-</div>
 </v-content>
 </v-app>
 </template>

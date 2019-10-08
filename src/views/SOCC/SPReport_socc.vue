@@ -1,7 +1,7 @@
 <template>
-<v-app>
+<v-app class="pa-4">
   <Navbar/>
-  <v-content>
+   <v-content>
   <div>
       <p></p>
       <p></p>
@@ -10,9 +10,10 @@
       <v-toolbar-title>Student Participants:</v-toolbar-title>
        <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
         <v-flex md4 mt-3>
-          <v-text-field browser-autocomplete height="35px" v-model="search" full-width class="mx-3" flat label="Search" prepend-inner-icon="search" outline></v-text-field>
+          <v-text-field v-model="search" append-icon="search" label="Search"  single-line hide-detail></v-text-field>
         </v-flex>
     
+
       <v-dialog v-model="dialog" max-width="500px">
         <v-card>
           <v-card-title>
@@ -39,7 +40,9 @@
           </v-card-text>
         </v-card>
       </v-dialog>
+    
     </v-toolbar>
+    
     <v-data-table
       :headers="headers"
       :items="studnum"
@@ -55,8 +58,17 @@
         <td class="justify-center layout px-0"></td>
       </template>
     </v-data-table>
-    <v-btn flat @click="back" class="primary mr-3 mt-3" to="/report" >BACK</v-btn>
-     <v-btn flat @click="submit" class="primary mx-0 mt-3" color="white" to="/papervali">NEXT</v-btn>
+
+
+  <v-layout>
+            <v-divider></v-divider>
+            <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+
+    <v-btn flat @click="back" class="yellow darken-3 white--text mr-3 mt-3" to="/report" >BACK</v-btn>
+     <v-btn flat @click="submit" class="green white--text mx-0 mt-3" color="white" to="/papervali">NEXT</v-btn>
+    
+  </v-layout>
   </div>
   </v-content>
 </v-app>

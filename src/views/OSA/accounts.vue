@@ -1,18 +1,15 @@
 <template>
-<v-app>
+<v-app class="pa-4">
    <Navbar/>
-  <v-content>
-  <div>
-      <p></p>
-      <p></p>
-      <p></p>
-    <v-toolbar flat color="white">
-      <v-toolbar-title>Accounts:</v-toolbar-title>
+  <v-content class="mt-4">
+    <v-card class="my-auto width:1000px">
+    <v-card-title>
+     <h1 class="headline font-weight-black pa-2">Accounts</h1>
       <v-spacer></v-spacer>
-       <v-flex md4 mt-3>
-          <v-text-field browser-autocomplete height="20px" full-width class="mx-3" flat label="Search" prepend-inner-icon="search" v-model="search" outline></v-text-field>
+      <v-flex md4 mt-3>
+          <v-text-field browser-autocomplete class="mx-3" flat label="Search" prepend-inner-icon="search" v-model="search" single-line hide-detail></v-text-field>
         </v-flex>
-    
+      
       <v-dialog v-model="dialog" max-width="500px">
         <template v-slot:activator="{ on }">
           <v-btn color="success" dark class="mb-2" v-on="on">Add Account</v-btn>
@@ -21,7 +18,6 @@
           <v-card-title>
             <span class="headline">{{ formTitle }}</span>
           </v-card-title>
-
           <v-card-text>
             <v-container grid-list-xs>
               <v-layout>
@@ -48,16 +44,12 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-toolbar>
-    
+      </v-card-title>
     <v-data-table  :headers="headers" :search="search"  :items="orgname" class="elevation-1">
       <template v-slot:items="props">
           <td class="text-xs-left">{{ props.item.college }}</td>
-        
         <td class="text-xs-left">{{ props.item.orgname }}</td>
         <td class="text-xs-left">{{ props.item.orgusername }}</td>
-      
-        
         <td class="justify-center layout px-0">
           <v-icon small class="mr-2"  @click="editItem(props.item)">
             edit
@@ -72,7 +64,7 @@
       </template>
       
     </v-data-table>
-  </div>
+  </v-card>
   </v-content>
 </v-app>
 </template>
@@ -93,7 +85,7 @@ export default{
           'Faculty of Medicine and Surgery', 'Faculty of Pharmacy', 'Faculty of Arts and Letters', 'Faculty of Engineering',
           'College of Education', 'College of Science', 'College of Architecture', 'College of Commerce', 'Conservatory of Music',
           'College of Nursing', 'College of Rehabilitation Sciences', 'College of Fine Arts & Design', 'College of Accountancy',
-          'College of Tourism and Hospitality Management', 'Institute of Physical Education and Athletics', 'Institute of Informationa and Computing Sciences'
+          'College of Tourism and Hospitality Management', 'Institute of Physical Education and Athletics', 'Institute of Information and Computing Sciences'
         ],
       search: '',
       dialog: false,

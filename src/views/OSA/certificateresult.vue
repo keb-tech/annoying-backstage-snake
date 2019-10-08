@@ -1,31 +1,26 @@
 <template>
-<v-app>
+<v-app class="pa-4">
 <Navbar/>
-<v-content>
- <div id="app">
-  <v-app>
-      <v-container bg grid-list-lg text-xs-center>
-        <v-layout>
-          <div class="display-1">
-              Student Activity Records
-           </div>
-           <v-spacer></v-spacer>
-        </v-layout>
-        <v-layout row align-center wrap>
-          <v-flex xs6>
-            <v-text-field solo label="Search" append-icon="search" hide-details></v-text-field>
-          </v-flex>
-           <v-flex xs6 sm3 d-flex>
-
-        <v-overflow-btn :items="items" label="Search by"></v-overflow-btn>
+<v-content class="mt-4">
+ <v-card class="my-auto width:1000px">
+    <v-card-title>
+     <h1 class="headline font-weight-black pa-2 mr-4">Student Activity Records</h1>
+      <v-flex md5>
+      <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-detail></v-text-field>
       </v-flex>
-      <v-btn color="green white--text" @click="show1">Advanced Search</v-btn>
-      
+      <v-spacer></v-spacer>
+      <v-flex sm2>
+      <v-overflow-btn class="ml-3 mr-2" height="35px" editable :items="items" label="Search by"></v-overflow-btn>
+      </v-flex>
+        <div class="flex-grow-1"></div>
+      <v-flex>
+      <v-btn color="green white--text" class="ml-3 mt-0" @click="show1" height="35px" to="/certificateresult">Advanced Search</v-btn></v-flex>
+      </v-card-title>
           <!-- <v-btn v-show="!show1" color="green white--text">PRINT</v-btn>
           <v-btn v-show="!show1" color="green white--text">DOWNLOAD</v-btn> -->
            <v-layout>
-    <v-flex xs12 sm11>
-      <v-card>
+    <v-flex sm12>
+      <v-card class="my-auto width:1000px">
         <v-card-title primary-title>
          <div>
             <h1> 2014545878</h1>
@@ -39,40 +34,31 @@
         <td class="text-xs-left">{{ props.item.year }}</td>
         <td class="text-xs-left">{{ props.item.eventname }}</td>
         <td class="text-xs-left">{{ props.item.organizedby }}</td>
-        <td class="text-xs-left">{{ props.item.involvement }}</td>
-     
-         
-     
+        <td class="text-xs-left">{{ props.item.involvement}}</td>
          </template>
     </v-data-table>
         <v-card-actions>
           <v-spacer></v-spacer>
-         <v-btn color="green white--text" @click="downloadWithAxios">Print</v-btn>
-          <v-btn color="green white--text">Send to Email</v-btn>
+       
+          <v-btn color="yellow darken-3 white--text">Send to Email</v-btn>
+            <v-btn color="green white--text">Print</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
   </v-layout>
-        </v-layout>
-      </v-container>
-  </v-app>
-   
-</div>
+ </v-card>
 </v-content>
 </v-app>
 </template>
 
 <script>
 import Navbar from '@/components/navbar_osa'
-import format from 'date-fns/format'
-import axios from 'axios'
-
+ import format from 'date-fns/format'
 export default{
   name: 'Navbar_OSA',
   components: { Navbar },
   data() {
     return {
-     url: 'https://78.media.tumblr.com/tumblr_m39nv7PcCU1r326q7o1_500.png',
      show1: false,
       items: ['Student Name','Student Number', 'Event Name', 'eReserve#'],
       headers: [
@@ -96,9 +82,11 @@ title: [
           year:'2018-2019',
             organizedby:'Information Systems Society',
             evenum:'15487'
-      
-      }],
+          }]
 
+  }
+
+  },
   computed: {
     formattedDate () {
       console.log(this.start)
@@ -107,34 +95,13 @@ title: [
     formattedDateend () {
       console.log(this.end)
       return this.end ? format(this.end, 'Do MMM YYYY') : ''
-    },
+    }
+    
   },
 
-  methods: {  
-    forceFileDownload(response){
-      const url = window.URL.createObjectURL(new Blob([response.data]))
-      const link = document.createElement('a')
-      link.href = url
-      link.setAttribute('download', 'file.png') //or any other extension
-      document.body.appendChild(link)
-      link.click()
-    },
-    
-    downloadWithAxios(){
-      axios({
-        method: 'get',
-        url: this.url,
-        responseType: 'arraybuffer'
-      })
-      .then(response => {
-        
-        this.forceFileDownload(response)
-        
-      })
-      .catch(() => console.log('error occured'))
-    }
-    } 
-  }
-  }
-}   
+
+
+
+}
 </script>
+
