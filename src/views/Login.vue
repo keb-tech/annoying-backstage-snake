@@ -89,16 +89,16 @@ export default {
     }
   },
   methods: { //Login.vue
-    async loginUser() {
-      let user = await this.$store.dispatch('loginUser', 
-      {email: this.loginInfo.email, password: this.loginInfo.password});
+    // async loginUser() {
+    //   let user = await this.$store.dispatch('loginUser', 
+    //   {email: this.loginInfo.email, password: this.loginInfo.password});
       
-      if(user.error){
-        alert(user.error)
-      } else {
-        alert('You are now logged in, ' + user.first_name + ".");
-      }
-    },
+    //   if(user.error){
+    //     alert(user.error)
+    //   } else {
+    //     alert('You are now logged in, ' + user.first_name + ".");
+    //   }
+    // },
 
     // async loginUser(){
     //  let response = await Api().post('/login',
