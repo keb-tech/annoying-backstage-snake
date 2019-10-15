@@ -226,17 +226,32 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.fullPath === '/dashboard') {
+  if (to.fullPath === '/dashboard' || '/dashboard/') {
     if (!store.state.authToken) {
       next('/login');
     }
   }
-  if (to.fullPath === '/login') {
+  if (to.fullPath === '/login' || '/login/') {
     if (store.state.accessToken) {
       next('/dashboard');
     }
   }
   next();
+
+  if (to.fullPath === '/org/' || '/org') {
+    next('/')
+  }
+
+  if (to.fullPath === '/socc/' || '/socc') {
+    next('/')
+  }
+
+  if (to.fullPath === '/admin/' || '/admin') {
+    next('/')
+  }
 });
+
+
+
 
 export default router;
