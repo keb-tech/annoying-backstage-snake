@@ -112,8 +112,8 @@ export default{
   name: 'accounts_OSA',
   components: { Navbar },
     data: () => ({
-       select: 'University Wide Organization',
-        type: ['University Wide Organization', 'College-based Organization'],
+       select: 'University-wide Student Organization',
+        type: ['University-wide Student Organization', 'College-based Student Organization'],
         college: [ 
           'Faculty of Sacred Theology',
           'Faculty of Philosophy',

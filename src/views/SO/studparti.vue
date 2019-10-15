@@ -96,9 +96,9 @@
         </v-data-table>
 
         <v-card-actions>
-          <v-btn flat @click="back" class="red white--text mr-3 mt-3" to="/newproject">Back</v-btn>
+          <v-btn flat @click="back" class="red white--text mr-3 mt-3" to="/org/newproject">Back</v-btn>
           <v-spacer></v-spacer>
-          <v-btn flat @click="save" class="warning mr-3 mt-3" to="/dashboard_so">Save</v-btn>
+          <v-btn flat @click="save" class="warning mr-3 mt-3" to="/dashboard">Save</v-btn>
           <div class="flex-grow-1"></div>
           <v-btn flat @click="snackbar=true" class="green mt-3" color="white">Submit</v-btn>
         </v-card-actions>
