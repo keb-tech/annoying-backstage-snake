@@ -72,9 +72,9 @@
 
 <script>
 import Vue from "vue"
-import axios from 'axios'
+// import axios from 'axios'
 import store from '@/store.js'
-import Api from '@/_services/Api.js';
+// import Api from '@/_services/Api.js';
 
 export default {
   data() {

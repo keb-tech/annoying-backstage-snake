@@ -67,7 +67,7 @@
       <v-icon class="black--text">exit_to_app</v-icon>
          </v-list-tile-action>
         <v-list-tile-content >
-        <v-list-tile-title class="black--text">Sign Out</v-list-tile-title>
+        <v-list-tile-title class="black--text">Logout</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
 </v-flex>
@@ -77,7 +77,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import { mapState } from 'vuex';
 
 export default {
@@ -106,14 +105,17 @@ export default {
              show:true,
     }
     },
-    methods: {
-    toggleMiniDrawer () {
-      this.drawer.mini = !this.drawer.mini
-    },
-    logoutUser () {
-      this.$store.dispatch("logoutUser");
-    },
-  }
+     methods: {
+      toggleMiniDrawer () {
+        this.drawer.mini = !this.drawer.mini
+      },
+      logoutUser () {
+        this.$store.dispatch("logoutUser");
+      }
+      },
+    computed: {
+      ...mapState(['currentUser'])
+    }
 };
     
 </script>
