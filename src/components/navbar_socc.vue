@@ -1,9 +1,9 @@
 <template>
-    <nav>
+<nav>
 <v-toolbar app :fixed="toolbar.fixed" :clipped-left="toolbar.clippedLeft" color="black">
 <v-toolbar-side-icon class= "white--text" @click.stop="toggleMiniDrawer"></v-toolbar-side-icon>
-<v-toolbar-title class="text-uppercase white--text" >
-<v-btn flat to="/dashboard">
+<v-toolbar-title class="text-uppercase white--text">
+<v-btn flat to="/dashboard_socc">
   <h1 class="font-weight-black display-1 white--text" >Activities</h1>
   
 </v-btn>
@@ -12,65 +12,32 @@
 <h1 class="font-weight-regular title white--text">{{currentUser.last_name + ', ' + currentUser.first_name}}</h1>
 </v-toolbar>
  
-<v-navigation-drawer :clipped="$vuetify.breakpoint.width > 1264" :fixed="drawer.fixed" :permanent="drawer.permanent" :mini-variant="drawer.mini" :width="250" v-model="drawer.open"
-      app class="yellow lighten-1"> 
- <v-layout column align-center>    
- </v-layout>
+<v-navigation-drawer :clipped="$vuetify.breakpoint.width > 1264" :fixed="drawer.fixed" :permanent="drawer.permanent" :mini-variant="drawer.mini" width="250" v-model="drawer.open"
+      app class="yellow lighten-1">
+ <v-layout column align-center>
+</v-layout>
 
 <v-list>
-    <v-flex class="mt-2">
-<v-list-tile to="/dashboard">
+  <v-flex class="mt-2">
+<v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
     <v-list-tile-action>
-      <v-icon class="black--text">dashboard</v-icon>
-         </v-list-tile-action>
+        <v-icon class="black--text" > {{link.icon}}</v-icon>
+        </v-list-tile-action>
         <v-list-tile-content>
-        <v-list-tile-title class="black--text">Dashboard</v-list-tile-title>
+        <v-list-tile-title class="black--text">{{link.text}}</v-list-tile-title>
+        
     </v-list-tile-content>
-</v-list-tile>
 
-<v-list-tile to="/socc/postER_socc">
-    <v-list-tile-action>
-      <v-icon class="black--text">notification</v-icon>
-         </v-list-tile-action>
-        <v-list-tile-content>
-        <v-list-tile-title class="black--text">Post-Event Reports</v-list-tile-title>
-    </v-list-tile-content>
-</v-list-tile>
 
-<v-list-tile to="/socc/searchfile">
-    <v-list-tile-action>
-      <v-icon class="black--text">search</v-icon>
-         </v-list-tile-action>
-        <v-list-tile-content>
-        <v-list-tile-title class="black--text">Search</v-list-tile-title>
-    </v-list-tile-content>
-</v-list-tile>
-
-<v-list-tile to="/socc/Password_socc">
-    <v-list-tile-action>
-      <v-icon class="black--text">lock</v-icon>
-         </v-list-tile-action>
-        <v-list-tile-content >
-        <v-list-tile-title class="black--text">Change Password</v-list-tile-title>
-    </v-list-tile-content>
-</v-list-tile>
-
-<v-list-tile @click="logoutUser">
-    <v-list-tile-action>
-      <v-icon class="black--text">exit_to_app</v-icon>
-         </v-list-tile-action>
-        <v-list-tile-content >
-        <v-list-tile-title class="black--text">Logout</v-list-tile-title>
-    </v-list-tile-content>
 </v-list-tile>
 </v-flex>
 </v-list>
-
 </v-navigation-drawer>
 </nav>
 </template>
 
 <script>
+import axios from 'axios'
 import { mapState } from 'vuex';
 
 export default {
@@ -106,12 +73,13 @@ export default {
             ]
             
         }
-    },
+    }
+    ,
     methods: {
-      toggleMiniDrawer () {
-        this.drawer.mini = !this.drawer.mini
-      },
-      logoutUser () {
+    toggleMiniDrawer () {
+      this.drawer.mini = !this.drawer.mini
+    },
+    logoutUser () {
         this.$store.dispatch("logoutUser");
       }
       },
