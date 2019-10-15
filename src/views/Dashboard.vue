@@ -5,7 +5,7 @@
 <v-card class="mt-4">
     <v-card-title>
      <h1 class="headline font-weight-black pa-2">Dashboard</h1>
-     <v-btn flat @click="submit" class="success my-3" to="/newproject" >Add Project</v-btn>
+     <v-btn flat @click="submit" class="success my-3" to="/org/newproject" >Add Project</v-btn>
       <v-spacer></v-spacer>
       <v-flex xs12 md4>
       <v-text-field v-model="search" append-icon="search" label="Search"  single-line hide-detail></v-text-field>
