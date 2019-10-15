@@ -23,16 +23,16 @@
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.studnum" label="Student Number"></v-text-field>
+                  <v-text-field v-model="editedItem.student_id" label="Student Number"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.surname" label="Surname Name"></v-text-field>
+                  <v-text-field v-model="editedItem.last_name" label="Surname Name"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.fname" label="First Name"></v-text-field>
+                  <v-text-field v-model="editedItem.first_name" label="First Name"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.mname" label="Middle Initial"></v-text-field>
+                  <v-text-field v-model="editedItem.middle_initial" label="Middle Initial"></v-text-field>
                 </v-flex>
               </v-layout> 
             </v-container>
@@ -47,17 +47,17 @@
       class="elevation-1"
     >
       <template v-slot:items="props">
-        <td>{{ props.item.studnum }}</td>
-        <td class="text-xs-left">{{ props.item.surname }}</td>
-        <td class="text-xs-left">{{ props.item.fname }}</td>
-        <td class="text-xs-left">{{ props.item.mname }}</td>
+        <td>{{ props.item.student_id }}</td>
+        <td class="text-xs-left">{{ props.item.last_name }}</td>
+        <td class="text-xs-left">{{ props.item.first_name }}</td>
+        <td class="text-xs-left">{{ props.item.middle_initial }}</td>
         <td class="justify-center layout px-0"></td>
       </template>
     </v-data-table>
     <v-layout>
       <v-spacer></v-spacer>
     <v-btn flat @click="snackbar2= true" class="red mr-2 mt-3" color="white" >FOR COMPLETION</v-btn>
-    <v-btn flat @click="back" class="primary mr-2 mt-3" to="/report_osa" >BACK</v-btn>
+    <v-btn flat @click="back" class="primary mr-2 mt-3" to="/admin/report_osa" >BACK</v-btn>
     <v-btn flat @click="snackbar = true" class="green mr-2 mt-3" color="white">APPROVE ENDORSEMENT</v-btn>
      </v-layout>
     <v-snackbar
@@ -96,29 +96,24 @@ export default{
       search:'',
       dialog: false,
       headers: [
-        {
-          text: 'Student Number',
-          align: 'left',
-          sortable: true,
-          value: 'studnum'
-        },
-        { text: 'Surname', value: 'surname' , sortable: false},
-        { text: 'First Name', value: 'fname', sortable: false },
-        { text: 'Middle Name', value: 'mname', sortable: false },
+        {text: 'Student Number', align: 'left', sortable: true, value: 'student_id'},
+        { text: 'Surname', value: 'last_name' , sortable: false},
+        { text: 'First Name', value: 'first_name', sortable: false },
+        { text: 'Middle Name', value: 'middle_initial', sortable: false },
       ],
-        studnum: [],
+        student_id: [],
       editedIndex: -1,
       editedItem: {
-        studnum: 0,
-        surname: '',
-        fname: '',
-        mname: '',
+        student_id: '',
+        last_name: '',
+        first_name: '',
+        middle_initial: '',
       },
       defaultItem: {
-        studnum: 0,
-        surname: '',
-        fname: '',
-        mname: '',
+        student_id: '',
+        last_name: '',
+        first_name: '',
+        middle_initial: '',
       }
     }),
 
@@ -137,25 +132,6 @@ export default{
     created () {
       this.initialize()
     },
-
-    methods: {
-      initialize () {
-        this.studnum = [
-          {
-            studnum: 2015456158,
-            surname:'Univ',
-            fname:'Tomas',
-            mname: 'Street'
-          },
-          {
-            studnum: 2015456154,
-            surname:'Roque',
-            fname:'Ruano',
-            mname: 'Sampaloc'
-          },
-          
-        ]
-      }
-    }
+    
   }
 </script>

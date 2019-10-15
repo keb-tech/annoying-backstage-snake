@@ -4,7 +4,7 @@
 >
 <v-toolbar-side-icon class="white--text"  @click.stop="toggleMiniDrawer"></v-toolbar-side-icon>
 <v-toolbar-title>
-<v-btn flat to="/dashboard_osa">
+<v-btn flat to="/dashboard">
   <h1 class="font-weight-black display-1 white--text" >Activities</h1>
 </v-btn>
 </v-toolbar-title>
@@ -19,7 +19,7 @@
 </v-layout>
 <v-list>
   <v-flex class="mt-2">
-<v-list-tile to="/dashboard_osa">
+<v-list-tile to="/dashboard">
     <v-list-tile-action>
       <v-icon class="black--text">dashboard</v-icon>
          </v-list-tile-action>
@@ -27,7 +27,7 @@
         <v-list-tile-title class="black--text">Dashboard</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
-<v-list-tile to="/postER_osa">
+<v-list-tile to="/admin/postER_osa">
     <v-list-tile-action>
       <v-badge overlap left color="red" small v-model="show"><span slot="badge">1</span>
       <v-icon class="black--text">notifications</v-icon>
@@ -37,7 +37,7 @@
         <v-list-tile-title class="black--text">Notifications</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
-<v-list-tile to="/accounts">
+<v-list-tile to="/admin/accounts">
     <v-list-tile-action>
       <v-icon class="black--text">group_add</v-icon>
          </v-list-tile-action>
@@ -45,7 +45,7 @@
         <v-list-tile-title class="black--text">Accounts Management</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
-<v-list-tile to="/certificate">
+<v-list-tile to="/admin/certificate">
     <v-list-tile-action>
       <v-icon class="black--text">search</v-icon>
          </v-list-tile-action>
@@ -54,7 +54,7 @@
     </v-list-tile-content>
 </v-list-tile>
 
-<v-list-tile to="/Password_osa">
+<v-list-tile to="/admin/Password_osa">
     <v-list-tile-action>
       <v-icon class="black--text">lock</v-icon>
          </v-list-tile-action>

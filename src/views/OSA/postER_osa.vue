@@ -29,7 +29,7 @@
                 </v-list-tile-action>
 
                  <v-list-tile-action>
-              <v-btn color="primary mr-2 pa-1" to="/report_osa">See Report</v-btn>
+              <v-btn color="primary mr-2 pa-1" to="/admin/report_osa">See Report</v-btn>
                  </v-list-tile-action>
                   <v-list-tile-action>
                       <v-btn class="pa-2" color="green white--text" @click="snackbar=true">Approve Endorsement</v-btn>
