@@ -57,7 +57,7 @@
     </v-list-tile-content>
 </v-list-tile>
 
-<v-list-tile to="/org/Password_so">
+<v-list-tile to="/Password_so">
     <v-list-tile-action>
       <v-icon class="black--text">lock</v-icon>
          </v-list-tile-action>
