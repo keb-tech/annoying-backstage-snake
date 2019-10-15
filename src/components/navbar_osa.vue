@@ -9,7 +9,7 @@
 </v-btn>
 </v-toolbar-title>
 <v-spacer></v-spacer>
-<h1 class="font-weight-regular title white--text">Office for Student Affairs</h1>
+<h1 class="font-weight-regular title white--text">{{currentUser.last_name + ', ' + currentUser.first_name}}</h1>
 </v-toolbar>
 
 <v-navigation-drawer :clipped="$vuetify.breakpoint.width > 1264" :fixed="drawer.fixed" :permanent="drawer.permanent" :mini-variant="drawer.mini" width="250" v-model="drawer.open"
@@ -62,7 +62,7 @@
         <v-list-tile-title class="black--text">Change Password</v-list-tile-title>
     </v-list-tile-content>
 </v-list-tile>
-<v-list-tile to="/login">
+<v-list-tile @click="logoutUser">
     <v-list-tile-action>
       <v-icon class="black--text">exit_to_app</v-icon>
          </v-list-tile-action>
@@ -106,8 +106,11 @@ export default {
     methods: {
     toggleMiniDrawer () {
       this.drawer.mini = !this.drawer.mini
-    }
-    }
-}
+    },
+    logoutUser () {
+      this.$store.dispatch("logoutUser");
+    },
+  }
+};
     
 </script>

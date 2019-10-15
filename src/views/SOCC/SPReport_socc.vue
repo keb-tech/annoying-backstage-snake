@@ -78,7 +78,7 @@
 import Navbar from '@/components/navbar_socc'
 
 export default{
-  name: 'Navbar_SOCC',
+  name: 'SPReport_SOCC',
   components: { Navbar },
     data: () => ({
       search:'',

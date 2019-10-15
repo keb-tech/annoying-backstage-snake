@@ -14,7 +14,7 @@
                     <h1 class="text-xs-center">Student Activities Records System</h1>
                     <v-layout>
                       <v-flex xs12>
-                        <h1 class="body-2">Username:</h1>
+                        <h1 class="body-2">Email:</h1>
                         <v-text-field
                           name="email"
                           v-model="loginInfo.email"
@@ -24,7 +24,6 @@
                           :rules="usernameRules"
                           required
                         ></v-text-field>
-                      <!--  <div>{{errors.first('username') }}</div>-->
                       </v-flex>
                     </v-layout>
                     <v-layout>
@@ -44,10 +43,11 @@
                     </v-layout>
                     <v-layout column align-center justify-center>
                       <v-flex xs4>
-                        <v-btn type="submit"
+                        <v-btn
+                        type="submit"
                         class="yellow lighten-1 black--text mr-4 title"
-                        large
-                        @click.prevent= "loginUser"
+                        large 
+                        @click.prevent="loginUser"
                         >Login</v-btn>
                       </v-flex>
                     </v-layout>
@@ -83,44 +83,40 @@ export default {
         email: '',
         password: ''
       },
-      usernameRules: [v => !!v || "Username is required"],
+      usernameRules: [v => !!v || "Email is required"],
       passwordRules: [v => !!v || "Password is required"] ,
       valid: true
     }
   },
   methods: { //Login.vue
-    // async loginUser() {
-    //   let user = await this.$store.dispatch('loginUser', 
-    //   {email: this.loginInfo.email, password: this.loginInfo.password});
+    async loginUser() {
+      let user = await this.$store.dispatch('loginUser', 
+      {email: this.loginInfo.email, password: this.loginInfo.password});
       
-    //   if(user.error){
-    //     alert(user.error)
-    //   } else {
-    //     alert('You are now logged in, ' + user.first_name + ".");
-    //   }
-    // },
+      if(user.error){
+        alert(user.error)
+      } else {
+        alert('You are now logged in, ' + user.first_name + ".");
+      }
+    },
 
-    // async loginUser(){
-    //  let response = await Api().post('/login',
-    //  {email: this.loginInfo.email, password: this.loginInfo.password});
-    //  console.log(response)
-    //  console.log(this.loginInfo)
-    // },
-
-    // validate() {
-    //   if (this.$refs.form.validate()) {
-    //     this.snackbar = true
-    //   }
+    validate() {
+      if (this.$refs.form.validate()) {
+        this.snackbar = true
+      }
      },
-  };
-  // watch: {
-  //   user(value) {
-  //     if (value !== null && value !== undefined) {
-  //       this.$router.push("/");
+  // computed: {
+      
   //     }
-  //   }
-  // }
-// };
+    },
+  watch: {
+    // user(value) {
+    //   if (value !== null && value !== undefined) {
+    //     this.$router.push("/");
+    //   }
+    // }
+    
+  }
+};
 </script>
-<style>
-</style>
+

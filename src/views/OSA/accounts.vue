@@ -18,21 +18,23 @@
           <v-card-title>
             <span class="headline">{{ formTitle }}</span>
           </v-card-title>
+           <v-form ref="form" :lazy-validation="lazy" v-model="valid">
           <v-card-text>
             <v-container grid-list-xs>
               <v-layout>
                 <v-flex xs12 sm6 md12>
-                   <v-combobox v-model="select" :items="items" label="College"></v-combobox>
+                   <v-combobox v-model="editedItem.college" :items="items" label="College"
+                   :rules="inputRules"></v-combobox>
                 </v-flex>
               </v-layout>
               <v-layout>
                 <v-flex xs12 sm6 md8>
-                  <v-text-field v-model="editedItem.orgname" label="Organization Name"></v-text-field>
+                  <v-text-field v-model="editedItem.orgname" label="Organization Name" :rules="inputRules"></v-text-field>
                 </v-flex>
               </v-layout>
               <v-layout>
                 <v-flex xs12 sm6 md8>
-                  <v-text-field v-model="editedItem.orgusername" label="Organization Username"></v-text-field>
+                  <v-text-field v-model="editedItem.orgusername" label="Organization Username" :rules="inputRules"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -40,8 +42,9 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" flat @click="close">Cancel</v-btn>
-            <v-btn color="blue darken-1" flat @click="save">Save</v-btn>
+            <v-btn color="blue darken-1" :disabled="!valid" flat @click="save">Save</v-btn>
           </v-card-actions>
+           </v-form>
         </v-card>
       </v-dialog>
       </v-card-title>
@@ -73,7 +76,7 @@
 
 import Navbar from '@/components/navbar_osa'
 export default{
-  name: 'Navbar_OSA',
+  name: 'accounts_OSA',
   components: { Navbar },
     data: () => ({
        select: 'University Wide Organization',
@@ -87,8 +90,11 @@ export default{
           'College of Nursing', 'College of Rehabilitation Sciences', 'College of Fine Arts & Design', 'College of Accountancy',
           'College of Tourism and Hospitality Management', 'Institute of Physical Education and Athletics', 'Institute of Information and Computing Sciences'
         ],
+        lazy: false,
       search: '',
-      dialog: false,
+         valid: "true",
+      dialog: false, 
+      inputRules: [v => !!v || "This field is required"],
       headers: [
         { text: 'College', value: 'college' , sortable: true},
         { text: 'Organization Name', align: 'left', sortable: true, value: 'orgname'},
@@ -135,7 +141,6 @@ export default{
           
         ]
       },
-
       editItem (item) {
         this.editedIndex = this.orgname.indexOf(item)
         this.editedItem = Object.assign({}, item)

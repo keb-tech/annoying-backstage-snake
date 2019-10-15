@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './store'
 
 import LoginComponent from './views/Login.vue'
+import Dashboard from './views/Dashboard.vue'
 
 import DashboardSO from './views/Dash_so.vue'
 import DashboardSOCC from './views/Dash_socc.vue'
@@ -34,121 +36,172 @@ import certificateresult from './views/OSA/certificateresult.vue'
 
 import usersList from './views/OSA/usersList.vue'
 
+import Org from './views/SO/Org.vue'
+import SOCC from './views/SOCC/SOCC.vue'
+import Admin from './views/OSA/Admin.vue'
+
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
       redirect: {
-      name: "login" }
+      name: "Dashboard" }
+      
     },
     {
       path: '/login',
       name: 'login',
       component: LoginComponent
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
-      path: "/dashboard_so",
-      name: "DashboardSO",
-      component: DashboardSO
+      path: "/dashboard",
+      name: "Dashboard",
+      component: Dashboard,
     },
     {
-      path: "/newproject",
-      name: "NewProject",
-      component: NewProject
+      path: "/org",
+      name: "org",
+      component: Org ,
+      beforeEnter(to, from,next) {
+        if(store.state.currentUser.role_id == 1) {
+          next();
+        } else {
+          next('/');
+        }
+      },
+      children: [
+        {
+          path: "newproject",
+          name: "NewProject",
+          component: NewProject
+        },
+        {
+          path: "Projects",
+          name: "Projects",
+          component: Project
+        },
+        {
+          path: "reportfeedback",
+          name: "reportfeedback",
+          component: reportfeedback
+        },
+        {
+          path: "saveddrafts",
+          name: "saveddrafts",
+          component: saveddrafts
+        },
+        {
+          path: "studparti",
+          name: "studparti",
+          component: StudentPartiSO
+        }
+      ]
     },
     {
-      path: "/Projects",
-      name: "Projects",
-      component: Project
+      path: "/socc",
+      name: "socc",
+      component: SOCC,
+      beforeEnter(to, from,next) {
+        if(store.state.currentUser.role_id == 2) {
+          next();
+        } else {
+          next('/');
+        }
+      },
+      children: [
+        {
+          path: "papervali",
+          name: "PaperVali",
+          component: PaperVali
+        },
+        {
+          path: "postER_socc",
+          name: "postER_socc",
+          component: PostER_SOCC
+        },
+        {
+          path: "report",
+          name: "report_socc",
+          component: report_SOCC
+        },
+        {
+          path: "studentpartireport_socc",
+          name: "SPReport_socc",
+          component: SPReport_SOCC
+        },
+        {
+          path: "searchfile",
+          name: "SearchFile_SOCC",
+          component: SearchFile
+        }
+      ]
     },
     {
-      path: "/reportfeedback",
-      name: "reportfeedback",
-      component: reportfeedback
+      path: "/admin",
+      name: "admin",
+      component: Admin,
+      beforeEnter(to, from,next) {
+        if(store.state.currentUser.role_id == 3) {
+          next();
+        } else {
+          next('/');
+        }
+      },
+      children: [
+        {
+          path: "accounts",
+          name: "AccountsOSA",
+          component: AccountsOSA
+        },
+        {
+          path: "certificate",
+          name: "CertificateOSA",
+          component: CertificateOSA
+        },
+        {
+          path: "postER_osa",
+          name: "postER_OSA",
+          component: postER_OSA
+        },
+        {
+          path: "report_osa",
+          name: "report_OSA",
+          component: report_OSA
+        },
+        {
+          path: "certificateresult",
+          name: "certificateresult",
+          component: certificateresult
+        },
+        {
+          path: "studentpartireport_osa",
+          name: "SPReport_OSA",
+          component: SPReport_OSA
+        }
+      ]
     },
-    {
-      path: "/saveddrafts",
-      name: "saveddrafts",
-      component: saveddrafts
-    },
-    {
-      path: "/studparti",
-      name: "studparti",
-      component: StudentPartiSO
-    },
-    {
-      path: "/dashboard_socc",
-      name: "DashboardSOCC",
-      component: DashboardSOCC
-    },
-    {
-      path: "/papervali",
-      name: "PaperVali",
-      component: PaperVali
-    },
-    {
-      path: "/postER_socc",
-      name: "postER_socc",
-      component: PostER_SOCC
-    },
-    {
-      path: "/report",
-      name: "report_socc",
-      component: report_SOCC
-    },
-    {
-      path: "/studentpartireport_socc",
-      name: "SPReport_socc",
-      component: SPReport_SOCC
-    },
-    {
-      path: "/dashboard_osa",
-      name: "DashboardOSA",
-      component: DashboardOSA
-    },
-    {
-      path: "/accounts",
-      name: "AccountsOSA",
-      component: AccountsOSA
-    },
-    {
-      path: "/certificate",
-      name: "CertificateOSA",
-      component: CertificateOSA
-    },
-    {
-      path: "/postER_osa",
-      name: "postER_OSA",
-      component: postER_OSA
-    },
-    {
-      path: "/report_osa",
-      name: "report_OSA",
-      component: report_OSA
-    },
-    {
-      path: "/certificateresult",
-      name: "certificateresult",
-      component: certificateresult
-    },
-    {
-      path: "/studentpartireport_osa",
-      name: "SPReport_OSA",
-      component: SPReport_OSA
-    },
-    {
-      path: "/searchfile",
-      name: "SearchFile_SOCC",
-      component: SearchFile
-    },
+    // {
+    //   path: "/dashboard_so",
+    //   name: "DashboardSO",
+    //   component: DashboardSO
+    // },
+    
+    // {
+    //   path: "/dashboard_socc",
+    //   name: "DashboardSOCC",
+    //   component: DashboardSOCC
+    // },
+
+   
+    // {
+    //   path: "/dashboard_osa",
+    //   name: "DashboardOSA",
+    //   component: DashboardOSA
+    // },
     {
       path: "/password_osa",
       name: "PasswordOSA",
@@ -171,3 +224,19 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.fullPath === '/dashboard') {
+    if (!store.state.authToken) {
+      next('/login');
+    }
+  }
+  if (to.fullPath === '/login') {
+    if (store.state.accessToken) {
+      next('/dashboard');
+    }
+  }
+  next();
+});
+
+export default router;

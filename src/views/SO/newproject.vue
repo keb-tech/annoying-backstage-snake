@@ -1,121 +1,135 @@
 <template>
-<v-app>
-  <Navbar/>
-  <v-layout wrap row mt-4 align-center justify-center>
+  <v-app>
+    <Navbar />
+    <v-layout wrap row mt-4 align-center justify-center>
       <v-card class="my-auto pa-4">
-      <v-card-title class="display-1 font-weight-medium ml-0">Post-Event Form:</v-card-title>
-      <v-form>
-      <v-layout row wrap>
-     <v-flex md8>
-      <v-text-field v-model="event" prepend-icon="event" label="Event Name" required></v-text-field>
-     </v-flex>
-      <v-spacer></v-spacer>
-      <v-flex md3>
-      <v-menu>
-      <v-text-field :value="formattedDate" :rules="inputRules" slot="activator" label="Start of event date" prepend-icon="date_range"></v-text-field>
-      <v-date-picker v-model="start"></v-date-picker>
-      </v-menu>
-      </v-flex>
-      </v-layout>
-      <v-layout>
-      <v-flex md2>
-      <v-text-field v-model="evenum" prepend-icon="info" label="eReserve#" required></v-text-field>
-      </v-flex>
-                                  <v-flex xs12 md10>    
-                                    <v-textarea auto-grow :rules="inputRules" v-model="edescript" outlined prepend-icon="description" rows="1" label="Event Description"></v-textarea>
-                                  </v-flex>
-                          </v-layout>
-      <v-layout>
-           <v-flex xs 12 md3>
-          <v-text-field v-model="year" prepend-icon="school" label="Academic Year" required></v-text-field>
-        </v-flex>
-        <v-flex xs12 sm2 d-flex>
-        <v-select v-model="sem" :items="items" item-text="sem" label="Semester"></v-select>
-        </v-flex>
-         <v-flex xs 12 md3>
-          <v-text-field v-model="org" prepend-icon="supervisor_account" label="Organizer" required></v-text-field>
-        </v-flex>
-         <v-flex xs 12 md3>
-          <v-text-field v-model="orgvol" label="Organization Involved" prepend-icon="supervisor_account" required></v-text-field>
-        </v-flex>
-      </v-layout>
-      <v-layout>
-        <v-flex md3>
-          <v-text-field v-model="speaker" prepend-icon="perm_identity" label="Speaker Name" required></v-text-field>
-        </v-flex>
-      </v-layout>
-      <v-layout>
-        <v-flex xs12 md8>
-        <v-textarea auto-grow label="Speaker Affiliation/s" prepend-icon="description" :rules="inputRules" rows="1" outline v-model="speakerAff"></v-textarea></v-flex>
-      </v-layout>
-     
-      <v-card-actions>
-      
-      <v-btn flat @click="cancel" class="red white--text " @click.stop="dialog=true" >Cancel</v-btn>
-       <v-spacer></v-spacer>
-      <v-btn flat @click="save" class="warning mr-3" to="/dashboard_so" >Save</v-btn>   
-      <div class="flex-grow-1"></div>
-      <v-btn flat @click="submit" class="success" to="/studparti" >Next</v-btn>
-      
-      </v-card-actions>
- 
-    </v-form>
-    </v-card>
- </v-layout>
-
-</v-app>
+        <v-card-title class="display-1 font-weight-medium ml-0">Post-Event Form:</v-card-title>
+        
+        <v-form ref="form" :lazy-validation="lazy" v-model="valid">
+          <v-layout>
+            <v-flex md3>
+              <v-text-field v-model="postevals.ereserve" :rules="ereserverules" prepend-icon="info" label="eReserve#" required></v-text-field>
+            </v-flex>
+            <v-flex md5>
+              <v-text-field v-model="postevals.event" prepend-icon="event" label="Event Name" :rules="inputRules" required></v-text-field>
+            </v-flex>
+            <v-flex md4>
+              <v-menu   ref="menu"  v-model="menu" :close-on-content-click="false"  :nudge-right="40"
+                lazy transition="scale-transition"   offset-y
+                full-width min-width="290px">
+                <template v-slot:activator="{ on }">
+                  <v-text-field v-model="postevals.date"   label="Start of event date" hint="YYYY-MM-DD format" persistent-hint                   prepend-icon="event" v-on="on"  :rules="inputRules" required ></v-text-field>
+                </template>
+                <v-date-picker v-model="postevals.date" no-title scrollable>
+                  <v-spacer></v-spacer>
+                  <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                  <v-btn flat color="primary" @click="$refs.menu.save(postevals.date)">OK</v-btn>
+                </v-date-picker>
+              </v-menu>
+            </v-flex>
+          </v-layout>
+          <v-layout>
+            <v-flex md5>
+              <v-text-field :mask="postevals.year" prepend-icon="school" :rules="inputRules" label="Academic Year" required hint="ex. 2019-2020" persistent-hint>       </v-text-field>
+            </v-flex>
+            <v-flex md4 d-flex>
+              <v-select
+                v-model="sem"
+                :items="items"
+                :rules="inputRules"
+                prepend-icon="menu_book"
+                item-text="sem"
+                label="Semester"
+                required
+              ></v-select>
+            </v-flex>
+          </v-layout>
+          <v-layout>
+            <v-flex xs12 md12>
+              <v-textarea
+                auto-grow
+                :rules="inputRules"
+                v-model="postevals.edescript"
+                prepend-icon="description"
+                rows="1"
+                label="Event Description"
+                required
+              ></v-textarea>
+            </v-flex>
+          </v-layout>
+          <v-layout>
+            <v-flex md3>
+              <v-text-field
+                v-model="postevals.speaker"
+                prepend-icon="perm_identity"
+                label="Speaker Name"
+                required
+                :rules="inputRules"
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+          <v-layout>
+            <v-flex xs12 md12>
+              <v-textarea
+                auto-grow
+                label="Speaker Affiliation/s"
+                prepend-icon="description"
+                :rules="inputRules"
+                rows="1"
+                v-model="postevals.speakerAff"
+                required
+              ></v-textarea>
+            </v-flex>
+          </v-layout>
+            
+          <v-card-actions>
+            <v-btn flat @click="cancel" class="red white--text" >Cancel</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn flat @click="save" class="warning mr-3" to="/dashboard_so">Save to Drafts</v-btn>
+            <div class="flex-grow-1"></div>
+            <v-btn flat @click="validate" :disabled="!valid" to="/studparti" class="success" >Next</v-btn>
+          </v-card-actions>
+        </v-form>
+      </v-card>
+    </v-layout>
+  </v-app>
 </template>
   <script>
-  import format from 'date-fns/format'
-  import Navbar from '@/components/navbar_so'
+import Navbar from "@/components/navbar_so";
 
-export default{
-  name: 'Navbar_SO',
+export default {
+  name: "form_SO",
   components: { Navbar },
+ 
   data() {
-    return {
-      evenum: int,
-      event: '',
-      start: null,
-      end: null,
-      edescript: '',
-      year:'',
-      sem:'',
-      org:'',
-      orgvol:'',
-      speaker:'',
-      speakerAff:'',
-      inputRules: [
-        v => !!v || 'This field is required',
-        v => v.length >= 3 || 'Minimum length is 3 characters'
-      ],
-       items: [
-         {  sem: '1st Semester' }, 
-         {  sem: '2nd Semester'},
-         ],
+    return {  
+      postevals:{
+      ereserve:"",
+      event: "",
+      edescript: "",
+      year: "####-####",
+      sem:"",
+      speaker:"",
+      speakerAff:"",
+      date: new Date().toISOString().substr(0, 10),
+      },
+      menu: false,
       
+      lazy:false,
+      inputRules: [v => !!v || 'This field is required'],
+      ereserverules: [v => !!v || 'This field is required',
+        v => /^\d+$/.test(v)||'This field only accept numbers'],
+     
+      items: [{ sem: "1st Semester" }, { sem: "2nd Semester" }],
     }
   },
-   methods: {
-    submit() {
-      if(this.$refs.form.validate()) {
-        console.log(this.evenum, this.event, this.start, this.end, this.edescript, this.year, this.sem, this.org, this.orgvol,
-        this.speaker, this.speakerAff)
+  methods: {
+     validate () {
+      if (this.$refs.form.validate()) {
+        this.valid = true
       }
-    }
-  },
-  computed: {
-    formattedDate () {
-      console.log(this.start)
-      return this.start ? format(this.start, 'Do MMM YYYY') : ''
-    },
-    formattedDateend () {
-      console.log(this.end)
-      return this.end ? format(this.end, 'Do MMM YYYY') : ''
-    }
-    
   }
 }
-  
+}
 </script>
 

@@ -77,7 +77,7 @@ export default{
           { text: 'Date Submitted', value: 'datesub' },
           { text: 'Status', value: 'stat' }
         ],
-      title: [
+title: [
           {
             evenum:'0001',
            

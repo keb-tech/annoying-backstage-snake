@@ -53,9 +53,9 @@
 
 <script>
 import Navbar from '@/components/navbar_osa'
- import format from 'date-fns/format'
+
 export default{
-  name: 'Navbar_OSA',
+  name: 'certificateresult_OSA',
   components: { Navbar },
   data() {
     return {
@@ -86,22 +86,7 @@ title: [
 
   }
 
-  },
-  computed: {
-    formattedDate () {
-      console.log(this.start)
-      return this.start ? format(this.start, 'Do MMM YYYY') : ''
-    },
-    formattedDateend () {
-      console.log(this.end)
-      return this.end ? format(this.end, 'Do MMM YYYY') : ''
-    }
-    
-  },
-
-
-
-
+  }
 }
 </script>
 

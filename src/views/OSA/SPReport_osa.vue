@@ -83,7 +83,7 @@
 import Navbar from '@/components/navbar_osa'
 
 export default{
-  name: 'Navbar_OSA',
+  name: 'SPReport_OSA',
   components: { Navbar },
     data: () => ({
  snackbar: false,
