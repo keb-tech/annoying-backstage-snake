@@ -40,7 +40,7 @@
              
               <v-layout>
                 <v-flex md5>
-                  <v-text-field v-model="editedItem.student_number" label="Student Number" :rules="numberRules"></v-text-field>
+                  <v-text-field v-model="editedItem.student_number" label="Student Number" :rules="studentnumberrule"></v-text-field>
                 </v-flex>
                 <v-spacer></v-spacer>
                  <v-flex xs12 sm6 md5>
@@ -128,8 +128,11 @@ export default{
       dialog: false, 
       inputRules: [v => !!v || "This field is required"],
       emailRules: [ v => !!v || 'E-mail is required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
-      numberRules:[v => !!v || 'This field is required',
-        v => /^\d+$/.test(v)||'This field only accept numbers'],
+      studentnumberrule: [
+      v => !!v || "This field is required",
+      v => /^\d+$/.test(v) || "This field only accept numbers",
+      v=>/^[0][1-9]\d{9}$|^[1-9]\d{9}$/.test(v)|| "This field only accepts 10 digits"
+    ],
       headers: [
         { text: 'Organization Type', value: 'organization_type' , sortable: true},
         { text: 'Organization Name', align: 'left', sortable: true, value: 'organization_name'},
