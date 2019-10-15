@@ -260,6 +260,18 @@ router.beforeEach((to, from, next) => {
     }
   }
   next();
+
+  if (to.fullPath === '/org/' || '/org') {
+    next('/')
+  }
+
+  if (to.fullPath === '/socc/' || '/socc') {
+    next('/')
+  }
+
+  if (to.fullPath === '/admin/' || '/admin') {
+    next('/')
+  }
 });
 
 export default router;
