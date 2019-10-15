@@ -136,7 +136,7 @@ const router = new Router({
           path: "report",
           name: "report_socc",
           component: report_SOCC
-          , meta: { title: 'Reports' }
+          , meta: { title: 'Post Event Report' }
         },
         {
           path: "studentpartireport_socc",
@@ -174,7 +174,7 @@ const router = new Router({
           path: "certificate",
           name: "CertificateOSA",
           component: CertificateOSA
-          , meta: { title: 'Certificate' }
+          , meta: { title: 'Search' }
         },
         {
           path: "postER_osa",
@@ -186,7 +186,7 @@ const router = new Router({
           path: "report_osa",
           name: "report_OSA",
           component: report_OSA
-          , meta: { title: 'Reports' }
+          , meta: { title: 'Post Event Report' }
         },
         {
           path: "certificateresult",
