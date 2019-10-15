@@ -10,7 +10,7 @@
           <v-text-field browser-autocomplete class="mx-3" flat label="Search" prepend-inner-icon="search" v-model="search" single-line hide-detail></v-text-field>
         </v-flex>
       
-      <v-dialog v-model="dialog" max-width="500px">
+      <v-dialog v-model="dialog" max-width="800px">
         <template v-slot:activator="{ on }">
           <v-btn color="success" dark class="mb-2" v-on="on">Add Account</v-btn>
         </template>
@@ -23,20 +23,43 @@
             <v-container grid-list-xs>
               <v-layout>
                 <v-flex xs12 sm6 md12>
-                   <v-combobox v-model="editedItem.college" :items="items" label="College"
+                   <v-combobox v-model="editedItem.organization_type" :items="items" label="Organization Type"
                    :rules="inputRules"></v-combobox>
                 </v-flex>
               </v-layout>
               <v-layout>
-                <v-flex xs12 sm6 md8>
-                  <v-text-field v-model="editedItem.orgname" label="Organization Name" :rules="inputRules"></v-text-field>
+                <v-flex md12>
+                  <v-text-field v-model="editedItem.organization_name" label="Organization Name" :rules="inputRules"></v-text-field>
                 </v-flex>
               </v-layout>
               <v-layout>
-                <v-flex xs12 sm6 md8>
-                  <v-text-field v-model="editedItem.orgusername" label="Organization Username" :rules="inputRules"></v-text-field>
+                <v-flex md5>
+                  <v-text-field v-model="editedItem.student_number" label="Student Number" :rules="inputRules"></v-text-field>
+                </v-flex>
+                <v-spacer></v-spacer>
+                 <v-flex xs12 sm6 md5>
+                  <v-text-field v-model="editedItem.email" label="Email" :rules="emailRules"></v-text-field>
                 </v-flex>
               </v-layout>
+              <v-layout>
+              <v-flex md5>
+                <v-text-field v-model="editedItem.first_name" label="First Name" :rules="inputRules"></v-text-field>
+              </v-flex>
+              <v-spacer></v-spacer>
+              <v-flex md5>
+                 <v-text-field v-model="editedItem.password" type="password" label="Password" :rules="inputRules"></v-text-field>
+              </v-flex>
+              </v-layout>
+            <v-layout>
+              <v-flex md5>
+                <v-text-field v-model="editedItem.last_name" label="Last Name" :rules="inputRules"></v-text-field>
+              </v-flex>
+              <v-spacer></v-spacer>
+              <v-flex md5>
+                <v-text-field v-model="editedItem.password_confirmation" type="password" label="Confirm Password" :rules="inputRules"></v-text-field>
+              </v-flex>
+            </v-layout>
+              
             </v-container>
           </v-card-text>
           <v-card-actions>
@@ -82,23 +105,20 @@ export default{
        select: 'University Wide Organization',
         items: [
           'University Wide Organization',
-          'Faculty of Sacred Theology',
-          'Faculty of Philosophy',
-          'Faculty of Canon Law',
-          'Faculty of Medicine and Surgery', 'Faculty of Pharmacy', 'Faculty of Arts and Letters', 'Faculty of Engineering',
-          'College of Education', 'College of Science', 'College of Architecture', 'College of Commerce', 'Conservatory of Music',
-          'College of Nursing', 'College of Rehabilitation Sciences', 'College of Fine Arts & Design', 'College of Accountancy',
-          'College of Tourism and Hospitality Management', 'Institute of Physical Education and Athletics', 'Institute of Information and Computing Sciences'
+          'College-based Organization'
         ],
         lazy: false,
       search: '',
          valid: "true",
       dialog: false, 
       inputRules: [v => !!v || "This field is required"],
+      emailRules: [ v => !!v || 'E-mail is required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
       headers: [
-        { text: 'College', value: 'college' , sortable: true},
-        { text: 'Organization Name', align: 'left', sortable: true, value: 'orgname'},
-        { text: 'Organization Username', value: 'orgusername' , sortable: false}
+        { text: 'Organization Type', value: 'organization_type' , sortable: true},
+        { text: 'Organization Name', align: 'left', sortable: true, value: 'organization_name'},
+        { text: 'Student Number', value: 'student_number' , sortable: false},
+        { text: 'First Name', value: 'first_name' , sortable: false},
+        { text: 'Last Name', value: 'last_name' , sortable: false}
       ],
         orgname: [],
       editedIndex: -1,
