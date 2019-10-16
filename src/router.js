@@ -226,17 +226,30 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.fullPath === '/dashboard') {
+  if (to.fullPath === 'dashboard') {
     if (!store.state.authToken) {
       next('/login');
     }
   }
-  if (to.fullPath === '/login') {
-    if (store.state.accessToken) {
+  if (to.fullPath === 'login') {
+    if (store.state.authToken) {
       next('/dashboard');
     }
   }
   next();
+
+  if (to.fullPath === '/org/') {
+    next(false);
+  }
+
+  if (to.fullPath === '/socc/') {
+    next(false);
+  }
+
+  if (to.fullPath === '/admin/') {
+    next(false);
+  }
+  
 });
 
 export default router;

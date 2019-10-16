@@ -29,6 +29,7 @@ export default new Vuex.Store({
     isLoggedIn: state => !!state.authToken,
     authProgress: state => state.authStatus
   },
+
   mutations: {
     SET_USERS(state, users) {
       state.users = users;
