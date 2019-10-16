@@ -35,7 +35,7 @@
                     <v-layout>
                       <v-flex xs6 sm5>
                         <v-select
-                          v-model="editedItem.involve"
+                          v-model="editedItem.involvement"
                           :items="involve"
                           label="Involvement"
                           :rules="inputRules"
@@ -45,7 +45,7 @@
                     <v-layout>
                       <v-flex xs12 sm6 md4>
                         <v-text-field
-                          v-model="editedItem.studnum"
+                          v-model="editedItem.student_id"
                           :rules="studentnumberrule"
                           label="Student Number"
                         ></v-text-field>
@@ -54,20 +54,20 @@
                     <v-layout>
                       <v-flex xs12 sm6 md4>
                         <v-text-field
-                          v-model="editedItem.surname"
+                          v-model="editedItem.last_name"
                           :rules="inputRules"
                           label="Surname"
                         ></v-text-field>
                       </v-flex>
                       <v-flex xs12 sm6 md4>
                         <v-text-field
-                          v-model="editedItem.fname"
+                          v-model="editedItem.first_name"
                           :rules="inputRules"
                           label="First Name"
                         ></v-text-field>
                       </v-flex>
                       <v-flex xs12 sm6 md4>
-                        <v-text-field v-model="editedItem.mname" label="Middle Initial"></v-text-field>
+                        <v-text-field v-model="editedItem.middle_name" label="Middle Initial"></v-text-field>
                       </v-flex>
                     </v-layout>
                   </v-container>
@@ -81,13 +81,13 @@
             </v-card>
           </v-dialog>
         </v-card-title>
-        <v-data-table :headers="headers" :search="search" :items="studnum" class="elevation-1">
+        <v-data-table :headers="headers" :search="search" :items="student_id" class="elevation-1">
           <template v-slot:items="props">
-            <td>{{ props.item.studnum }}</td>
-            <td class="text-xs-left">{{ props.item.surname }}</td>
-            <td class="text-xs-left">{{ props.item.fname }}</td>
-            <td class="text-xs-left">{{ props.item.mname }}</td>
-            <td class="text-xs-left">{{ props.item.involve }}</td>
+            <td>{{ props.item.student_id }}</td>
+            <td class="text-xs-left">{{ props.item.last_name }}</td>
+            <td class="text-xs-left">{{ props.item.first_name }}</td>
+            <td class="text-xs-left">{{ props.item.middle_name }}</td>
+            <td class="text-xs-left">{{ props.item.involvement }}</td>
             <td class="justify-center layout px-0">
               <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
               <v-icon small @click="deleteItem(props.item)">delete</v-icon>
@@ -96,9 +96,9 @@
         </v-data-table>
 
         <v-card-actions>
-          <v-btn flat @click="back" class="red white--text mr-3 mt-3" to="/newproject">Back</v-btn>
+          <v-btn flat @click="back" class="red white--text mr-3 mt-3" to="/org/newproject">Back</v-btn>
           <v-spacer></v-spacer>
-          <v-btn flat @click="save" class="warning mr-3 mt-3" to="/dashboard_so">Save</v-btn>
+          <v-btn flat @click="save" class="warning mr-3 mt-3" to="/dashboard">Save</v-btn>
           <div class="flex-grow-1"></div>
           <v-btn flat @click="snackbar=true" class="green mt-3" color="white">Submit</v-btn>
         </v-card-actions>
@@ -145,33 +145,30 @@ export default {
     inputRules: [v => !!v || "This field is required"],
     studentnumberrule: [
       v => !!v || "This field is required",
-      v => /^\d+$/.test(v) || "This field only accept numbers"
+      v => /^\d+$/.test(v) || "This field only accept numbers",
+      v=>/^[0][1-9]\d{9}$|^[1-9]\d{9}$/.test(v)|| "This field only accepts 10 digits"
     ],
     headers: [
       {
-        text: "Student Number",
-        align: "left",
-        sortable: true,
-        value: "studnum"
-      },
-      { text: "Surname", value: "surname", sortable: false },
-      { text: "First Name", value: "fname", sortable: false },
-      { text: "Middle Name", value: "mname", sortable: false },
-      { text: "Involvement", value: "involve", sortable: false }
+        text: "Student Number", align: "left", sortable: true, value: "student_id"},
+      { text: "Surname", value: "last_name", sortable: false },
+      { text: "First Name", value: "first_name", sortable: false },
+      { text: "Middle Name", value: "middle_initial", sortable: false },
+      { text: "Involvement", value: "involvement", sortable: false }
     ],
-    studnum: [],
+    student_id: [],
     editedIndex: -1,
     editedItem: {
-      studnum: "",
-      surname: "",
-      fname: "",
-      mname: ""
+      student_id: "",
+      last_name: "",
+      first_name: "",
+      middle_initial: ""
     },
     defaultItem: {
-      studnum: "",
-      surname: "",
-      fname: "",
-      mname: ""
+      student_id: "",
+      last_name: "",
+      first_name: "",
+      middle_initial: ""
     }
   }),
 
@@ -192,24 +189,6 @@ export default {
   },
 
   methods: {
-    initialize() {
-      this.studnum = [
-        {
-          studnum: 2015456158,
-          surname: "Univ",
-          fname: "Tomas",
-          mname: "Street",
-          involve: "Participant"
-        },
-        {
-          studnum: 2015456154,
-          surname: "Roque",
-          fname: "Ruano",
-          mname: "Sampaloc",
-          involve: "Participant"
-        }
-      ];
-    },
     validate() {
       if (this.$refs.form.validate()) {
         this.valid = true;
@@ -217,13 +196,13 @@ export default {
     },
 
     editItem(item) {
-      this.editedIndex = this.studnum.indexOf(item);
+      this.editedIndex = this.student_id.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
-      const index = this.studnum.indexOf(item);
+      const index = this.student_id.indexOf(item);
       confirm("Are you sure you want to delete this?") &&
         this.studnum.splice(index, 1);
     },
@@ -238,9 +217,9 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.studnum[this.editedIndex], this.editedItem);
+        Object.assign(this.student_id[this.editedIndex], this.editedItem);
       } else {
-        this.studnum.push(this.editedItem);
+        this.student_id.push(this.editedItem);
       }
       this.close();
     }

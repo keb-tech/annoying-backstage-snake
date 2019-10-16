@@ -54,13 +54,15 @@ const router = new Router({
     },
     {
       path: '/login',
+      component: LoginComponent,
       name: 'login',
-      component: LoginComponent
+      meta: { title:'Login'}
     },
     {
       path: "/dashboard",
       name: "Dashboard",
       component: Dashboard,
+      meta: { title: 'Dashboard' }
     },
     {
       path: "/org",
@@ -77,27 +79,32 @@ const router = new Router({
         {
           path: "newproject",
           name: "NewProject",
-          component: NewProject
+          component: NewProject,
+          meta: { title: 'Add New Project' }
         },
         {
           path: "Projects",
           name: "Projects",
           component: Project
+          ,meta: { title: 'Projects' }
         },
         {
           path: "reportfeedback",
           name: "reportfeedback",
           component: reportfeedback
+          , meta: { title: 'Report Feedback' }
         },
         {
           path: "saveddrafts",
           name: "saveddrafts",
           component: saveddrafts
+          , meta: { title: 'Saved Drafts' }
         },
         {
           path: "studparti",
           name: "studparti",
           component: StudentPartiSO
+          , meta: { title: 'Student Participants' }
         }
       ]
     },
@@ -117,26 +124,31 @@ const router = new Router({
           path: "papervali",
           name: "PaperVali",
           component: PaperVali
+          , meta: { title: 'Validation of Forms' }
         },
         {
           path: "postER_socc",
           name: "postER_socc",
           component: PostER_SOCC
+          , meta: { title: 'Post Event Reports' }
         },
         {
           path: "report",
           name: "report_socc",
           component: report_SOCC
+          , meta: { title: 'Post Event Report' }
         },
         {
           path: "studentpartireport_socc",
           name: "SPReport_socc",
           component: SPReport_SOCC
+          , meta: { title: 'Student Participants' }
         },
         {
           path: "searchfile",
           name: "SearchFile_SOCC",
           component: SearchFile
+          , meta: { title: 'Search' }
         }
       ]
     },
@@ -156,31 +168,37 @@ const router = new Router({
           path: "accounts",
           name: "AccountsOSA",
           component: AccountsOSA
+          , meta: { title: 'Accounts Management' }
         },
         {
           path: "certificate",
           name: "CertificateOSA",
           component: CertificateOSA
+          , meta: { title: 'Search' }
         },
         {
           path: "postER_osa",
           name: "postER_OSA",
           component: postER_OSA
+          , meta: { title: 'Post Event Reports' }
         },
         {
           path: "report_osa",
           name: "report_OSA",
           component: report_OSA
+          , meta: { title: 'Post Event Report' }
         },
         {
           path: "certificateresult",
           name: "certificateresult",
           component: certificateresult
+          , meta: { title: 'Certification Result' }
         },
         {
           path: "studentpartireport_osa",
           name: "SPReport_OSA",
           component: SPReport_OSA
+          , meta: { title: 'Student Participants' }
         }
       ]
     },
@@ -206,27 +224,32 @@ const router = new Router({
       path: "/password_osa",
       name: "PasswordOSA",
       component: PasswordOSA
+      , meta: { title: 'Change Password' }
     },
     {
       path: "/password_so",
       name: "PasswordSO",
       component: PasswordSO
+      , meta: { title: 'Change Password' }
     },
     {
       path: "/password_socc",
       name: "PasswordSOCC",
       component: PasswordSOCC
+      , meta: { title: 'Change Password' }
     },
     {
       path: "/usersList",
       name: "usersList",
       component: usersList
+      , meta: { title: 'Users' }
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.fullPath === 'dashboard') {
+  document.title=to.meta.title
+  if (to.fullPath === '/dashboard') {
     if (!store.state.authToken) {
       next('/login');
     }

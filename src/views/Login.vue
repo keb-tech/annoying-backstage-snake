@@ -21,7 +21,7 @@
                           type="text"
                           single-line
                           outline
-                          :rules="usernameRules"
+                          :rules="emailRules"
                           required
                         ></v-text-field>
                       </v-flex>
@@ -83,7 +83,7 @@ export default {
         email: '',
         password: ''
       },
-      usernameRules: [v => !!v || "Email is required"],
+      emailRules: [ v => !!v || 'E-mail is required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
       passwordRules: [v => !!v || "Password is required"] ,
       valid: true
     }

@@ -51,9 +51,9 @@
      
       <v-card-actions>
        <v-spacer></v-spacer>
-       <v-btn flat @click="cancel" class="red white--text mr-3" @click.stop="dialog=true" to="/postER_osa">Cancel</v-btn>   
+       <v-btn flat @click="cancel" class="red white--text mr-3" @click.stop="dialog=true" to="/admin/postER_osa">Cancel</v-btn>   
       <div class="flex-grow-1"></div>
-      <v-btn flat @click="submit" class="success" to="/studentpartireport_osa" >Next</v-btn>
+      <v-btn flat @click="submit" class="success" to="/admin/studentpartireport_osa" >Next</v-btn>
       
       </v-card-actions>
  

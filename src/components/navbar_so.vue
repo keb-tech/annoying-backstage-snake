@@ -3,7 +3,7 @@
 <v-toolbar app :fixed="toolbar.fixed" :clipped-left="toolbar.clippedLeft" color="black">
 <v-toolbar-side-icon class= "white--text" @click.stop="toggleMiniDrawer"></v-toolbar-side-icon>
 <v-toolbar-title class="text-uppercase white--text" >
-<v-btn flat to="/dashboard_so">
+<v-btn flat to="/dashboard">
   <h1 class="font-weight-black display-1 white--text" >Activities</h1>
   
 </v-btn>
@@ -19,7 +19,7 @@
 
 <v-list>
     <v-flex class="mt-2">
-<v-list-tile to="/dashboard_so">
+<v-list-tile to="/dashboard">
     <v-list-tile-action>
       <v-icon class="black--text">dashboard</v-icon>
          </v-list-tile-action>
@@ -28,7 +28,7 @@
     </v-list-tile-content>
 </v-list-tile>
 
-<v-list-tile to="/Projects">
+<v-list-tile to="/org/Projects">
     <v-list-tile-action>
       <v-icon class="black--text">folder</v-icon>
          </v-list-tile-action>
@@ -37,7 +37,7 @@
     </v-list-tile-content>
 </v-list-tile>
 
-<v-list-tile to="/saveddrafts">
+<v-list-tile to="/org/saveddrafts">
     <v-list-tile-action>
       <v-icon class="black--text">edit</v-icon>
          </v-list-tile-action>
@@ -46,7 +46,7 @@
     </v-list-tile-content>
 </v-list-tile>
 
-<v-list-tile to="/reportfeedback">
+<v-list-tile to="/org/reportfeedback">
     <v-list-tile-action>
       <v-badge overlap left color="red" small v-model="show"><span slot="badge">1</span>
       <v-icon class="black--text">feedback</v-icon>

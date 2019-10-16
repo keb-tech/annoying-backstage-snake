@@ -83,11 +83,11 @@
           </v-layout>
             
           <v-card-actions>
-            <v-btn flat @click="cancel" class="red white--text" >Cancel</v-btn>
+            <v-btn flat @click="cancel" class="red white--text" to="/dashboard" >Cancel</v-btn>
             <v-spacer></v-spacer>
-            <v-btn flat @click="save" class="warning mr-3" to="/dashboard_so">Save to Drafts</v-btn>
+            <v-btn flat @click="save" class="warning mr-3" to="/dashboard">Save to Drafts</v-btn>
             <div class="flex-grow-1"></div>
-            <v-btn flat @click="validate" :disabled="!valid" to="/studparti" class="success" >Next</v-btn>
+            <v-btn flat @click="validate" :disabled="!valid" to="/org/studparti" class="success" >Next</v-btn>
           </v-card-actions>
         </v-form>
       </v-card>

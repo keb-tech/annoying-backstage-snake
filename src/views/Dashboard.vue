@@ -5,7 +5,7 @@
 <v-card class="mt-4">
     <v-card-title>
      <h1 class="headline font-weight-black pa-2">Dashboard</h1>
-     <v-btn flat @click="submit" class="success my-3" to="/newproject" >Add Project</v-btn>
+     <v-btn flat @click="submit" class="success my-3" to="/org/newproject" >Add Project</v-btn>
       <v-spacer></v-spacer>
       <v-flex xs12 md4>
       <v-text-field v-model="search" append-icon="search" label="Search"  single-line hide-detail></v-text-field>
@@ -14,7 +14,7 @@
 <v-data-table :headers="headers" :items="title" :search="search" class="elevation-1">
       <template v-slot:items="props">
       <td>{{ props.item.evenum }}</td>
-      <td class="text-xs-left">{{ props.item.event}}</td>
+      <td class="text-xs-left pa-0"><v-btn small flat>{{ props.item.event}}</v-btn></td>  
       <td class="text-xs-left">{{ props.item.year}}</td>
       <td class="text-xs-left">{{ props.item.sem}}</td>
       <td class="text-xs-left">{{ props.item.datesub}}</td>
@@ -36,8 +36,7 @@
       </div>
       </v-flex>
       </td>
-      <td class="justify-center layout px-0">
-      </td>
+      
       </template>
       </v-data-table>  
 </v-card>
@@ -71,11 +70,13 @@ export default{
             value: 'evenum'
           },
           
-          { text: 'Event Name', value: 'event' },
+          { text: 'Event Name', value: 'event', align:'left' },
+          
           { text: 'Academic Year', value: 'year' },
           { text: 'Semester', value: 'sem' },
           { text: 'Date Submitted', value: 'datesub' },
-          { text: 'Status', value: 'stat' }
+          { text: 'Status', value: 'stat' },
+         
         ],
 title: [
           {

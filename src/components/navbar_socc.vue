@@ -3,7 +3,7 @@
 <v-toolbar app :fixed="toolbar.fixed" :clipped-left="toolbar.clippedLeft" color="black">
 <v-toolbar-side-icon class= "white--text" @click.stop="toggleMiniDrawer"></v-toolbar-side-icon>
 <v-toolbar-title class="text-uppercase white--text">
-<v-btn flat to="/dashboard_socc">
+<v-btn flat to="/dashboard">
   <h1 class="font-weight-black display-1 white--text" >Activities</h1>
   
 </v-btn>
@@ -62,10 +62,10 @@ export default {
     },
             show:true,
             links: [
-                {icon: 'dashboard', text: 'Dashboard', route: '/dashboard_socc'},
-                {icon: 'notifications', text: 'Post-Event Reports', route:'/postER_socc'},
-                {icon: 'search', text: 'Search', route:'/searchfile'},
-                {icon: 'lock', text: 'Change Password', route:'/Password_socc'},
+                {icon: 'dashboard', text: 'Dashboard', route: '/dashboard'},
+                {icon: 'notifications', text: 'Post-Event Reports', route:'/socc/postER_socc'},
+                {icon: 'search', text: 'Search', route:'/socc/searchfile'},
+                {icon: 'lock', text: 'Change Password', route:'/socc/Password_socc'},
                 {icon: 'exit_to_app', text: 'Sign Out', route: '/login'}
             ]
             
