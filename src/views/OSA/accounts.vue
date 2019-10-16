@@ -2,7 +2,7 @@
 <v-app class="pa-4">
    <Navbar/>
   <v-content class="mt-4">
-    <v-card class="my-auto width:1000px">
+    <v-card class="my-auto width:1080px">
     <v-card-title>
      <h1 class="headline font-weight-black pa-2">Accounts</h1>
       <v-spacer></v-spacer>
@@ -20,6 +20,12 @@
            <v-form ref="form" :lazy-validation="lazy" v-model="valid">
           <v-card-text>
             <v-container grid-list-xs>
+              <v-layout>
+                <v-flex xs12 sm6 md12>
+                   <v-combobox v-model="editedItem.role" :items="roles" label="Role"
+                   :rules="inputRules"></v-combobox>
+                </v-flex>
+              </v-layout>
               <v-layout>
                 <v-flex xs12 sm6 md12>
                    <v-combobox v-model="editedItem.organization_type" :items="type" label="Organization Type"
@@ -112,7 +118,7 @@ export default{
   name: 'accounts_OSA',
   components: { Navbar },
     data: () => ({
-       select: 'University-wide Student Organization',
+      roles:['Student Organization', 'Student Organization Coordinating Council'],
         type: ['University-wide Student Organization', 'College-based Student Organization'],
         college: [ 
           'Faculty of Sacred Theology',
