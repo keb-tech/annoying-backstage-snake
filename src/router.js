@@ -42,6 +42,32 @@ import Admin from './views/OSA/Admin.vue'
 
 Vue.use(Router)
 
+// function requireAuth (to, from, next) {
+//   function proceed() {
+//     if (store.getters.authProgress == "success") {
+//       if (store.getters.isLoggedIn) {
+//         next();
+//       } else {
+//         next('/login');
+//       }
+//     }
+//   }
+//   if ( store.getters.authProgress != "success" ) {
+    
+//     store.dispatch( 'loginUser' );
+  
+    
+//     store.watch( store.getters.authProgress, function(){
+//           if( store.getters.authProgress() == "success" ){
+//               proceed();
+//           }
+//     });
+//   } else {
+    
+//     proceed();
+//   }
+// }
+
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -56,12 +82,26 @@ const router = new Router({
       path: '/login',
       component: LoginComponent,
       name: 'login',
+      beforeEnter(to, from, next) {
+        if(store.state.authToken) {
+          next("/");
+        } else {
+          next();
+        }
+      },
       meta: { title:'Login'}
     },
     {
       path: "/dashboard",
       name: "Dashboard",
       component: Dashboard,
+      beforeEnter(to, from, next) {
+        if(!store.state.authToken) {
+          next("login");
+        } else {
+          next();
+        }
+      },
       meta: { title: 'Dashboard' }
     },
     {
@@ -245,34 +285,33 @@ const router = new Router({
       , meta: { title: 'Users' }
     }
   ]
-})
+});
 
 router.beforeEach((to, from, next) => {
-  document.title=to.meta.title
-  if (to.fullPath === '/dashboard') {
-    if (!store.state.authToken) {
-      next('/login');
-    }
+  if (to.fullPath === '/org') {
+    next('/');
   }
-  if (to.fullPath === 'login') {
-    if (store.state.authToken) {
-      next('/dashboard');
-    }
-  }
-  next();
 
   if (to.fullPath === '/org/') {
-    next(false);
+    next('/');
+  }
+  
+  if (to.fullPath === '/socc') {
+    next('/');
   }
 
   if (to.fullPath === '/socc/') {
-    next(false);
+    next('/');
+  }
+
+  if (to.fullPath === '/admin') {
+    next('/');
   }
 
   if (to.fullPath === '/admin/') {
-    next(false);
+    next('/');
   }
-  
+  next();
 });
 
 export default router;
