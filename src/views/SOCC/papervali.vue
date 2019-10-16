@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <Navbar />
     <v-content>
       <v-layout wrap row mt-4 align-center justify-center>
         <v-card class="my-auto" width="600px">
@@ -123,11 +122,9 @@
 </template>
 
 <script>
-import Navbar from "@/components/navbar_socc";
 
 export default {
   name: "papervali_SOCC",
-  components: { Navbar },
   data: () => ({
     checkbox1: false,
     checkbox2: false,

@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar_so'
+import Navbar from '../components/navbar_app'
 
 export default{
   methods: {
@@ -57,7 +57,7 @@ export default{
         '\n[For Completion] - Event report returned to Student Organization for recompletion')
       },
   },
-  name: 'Navbar_SO',
+  name: 'Navbar_APP',
   components: { Navbar },
   data(){
     return{

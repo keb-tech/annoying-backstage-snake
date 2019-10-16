@@ -2,7 +2,6 @@
   <div id="app">
     <v-app id="inspire">
       <v-content>
-        <navbar />
         <v-container fluid fill-height>
           <v-layout align-center justify-center>
             <v-flex xs12 sm8 md5>
@@ -72,11 +71,10 @@
   </div>
 </template>
 <script>
-import Navbar from "@/components/navbar_so";
 
 export default {
-  name: "Navbar_SO",
-  components: { Navbar },
+  // name: "Navbar_SO",
+  components: {  },
   data() {
     return {
       show3: false,

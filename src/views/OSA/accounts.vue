@@ -1,6 +1,6 @@
 <template>
 <v-app class="pa-4">
-   <Navbar/>
+
   <v-content class="mt-4">
     <v-card class="my-auto width:1000px">
     <v-card-title>
@@ -107,10 +107,9 @@
 
 <script>
 
-import Navbar from '@/components/navbar_osa'
 export default{
   name: 'accounts_OSA',
-  components: { Navbar },
+  components: { },
     data: () => ({
        select: 'University-wide Student Organization',
         type: ['University-wide Student Organization', 'College-based Student Organization'],

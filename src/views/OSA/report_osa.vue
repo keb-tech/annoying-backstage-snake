@@ -1,6 +1,6 @@
 <template>
 <v-app class="pa-4">
-  <Navbar/>
+
   <v-layout wrap row mt-4 align-center justify-center>
       <v-card class="my-auto pa-4">
       <v-card-title class="display-1 font-weight-medium ml-0">Post-Event Form:</v-card-title>
@@ -65,11 +65,10 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar_osa'
 
 export default{
-  name: 'Navbar_OSA',
-  components: { Navbar },
+  // name: 'Navbar_OSA',
+  components: {  },
     data(){
         return{
             projects:[

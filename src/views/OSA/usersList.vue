@@ -1,6 +1,6 @@
 <template>
 <v-app>
-   <Navbar/>
+
   <v-content>
   <div>
       <p></p>
@@ -20,11 +20,11 @@
 
 <script>
 
-import Navbar from '@/components/navbar_so';
+
 import { mapState } from 'vuex';
 export default{
-  name: 'Navbar_SO',
-  components: { Navbar },
+  // name: 'Navbar_SO',
+  components: {  },
 
     computed: {
         ...mapState (['users'])

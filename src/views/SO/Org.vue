@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar_so'
+import Navbar from '@/components/navbar_app'
 
 export default {
     
-    name: 'Navbar_SO',
+    name: 'Navbar_APP',
     components: { Navbar },
         
     }

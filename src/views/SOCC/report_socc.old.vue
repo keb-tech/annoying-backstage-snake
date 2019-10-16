@@ -1,6 +1,5 @@
 <template>
 <v-app>
-  <Navbar/>
   <v-content>
  <v-layout wrap row mt-4>
     <v-flex xs12 md6 v-for="project in projects" :key="project.event" offset-sm3>
@@ -74,11 +73,10 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar_socc'
 
 export default{
-  name: 'Navbar_SOCC',
-  components: { Navbar },
+  // name: 'Navbar_SOCC',
+  components: {  },
     data(){
         return{
             projects:[

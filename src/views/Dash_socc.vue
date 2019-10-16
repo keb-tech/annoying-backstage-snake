@@ -1,6 +1,5 @@
 <template>
 <v-app class="pa-4">
-  <Navbar/>
 <v-content>
 <v-card class="mt-4">
     <v-card-title>
@@ -37,7 +36,6 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar_socc'
 
 export default{
   methods: {
@@ -48,8 +46,8 @@ export default{
         '\n[For Completion] - Event report returned to Student Organization for recompletion')
       },
   },
-  name: 'Navbar_SOCC',
-  components: { Navbar },
+  // name: 'Navbar_SOCC',
+  components: {  },
   data(){
     return{
       search:'',

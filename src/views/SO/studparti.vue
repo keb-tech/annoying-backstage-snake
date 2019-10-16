@@ -1,6 +1,5 @@
 <template>
   <v-app class="pa-4">
-    <Navbar />
     <v-content>
       <v-card class="my-auto width:1000px">
         <v-card-title>
@@ -123,11 +122,10 @@
 </template>
 
 <script>
-import Navbar from "@/components/navbar_so";
 
 export default {
   name: "Studparti_SO",
-  components: { Navbar },
+  components: {  },
   data: () => ({
     auto: "Participant",
     involve: ["Organizer", "Participant"],

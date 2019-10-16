@@ -77,6 +77,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { mapState } from 'vuex';
+
 export default {
     data(){
         return{
@@ -104,13 +107,16 @@ export default {
     }
     },
     methods: {
-    toggleMiniDrawer () {
-      this.drawer.mini = !this.drawer.mini
-    },
-    logoutUser () {
-      this.$store.dispatch("logoutUser");
-    },
-  }
+      toggleMiniDrawer () {
+        this.drawer.mini = !this.drawer.mini
+      },
+      logoutUser () {
+        this.$store.dispatch("logoutUser");
+      }
+      },
+    computed: {
+      ...mapState(['currentUser'])
+    }
 };
     
 </script>

@@ -1,6 +1,6 @@
 <template>
   <v-app class="pa-4">
-    <Navbar />
+ 
     <v-content class="mt-4">
       <v-card class="my-auto width:1000px">
         <v-card-title>
@@ -26,10 +26,10 @@
 </template>
 
 <script>
-import Navbar from "@/components/navbar_so";
+
 export default {
   name: "projects_SO",
-  components: { Navbar },
+  components: {  },
   data() {
     return {
       search: "",

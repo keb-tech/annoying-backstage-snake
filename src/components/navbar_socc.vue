@@ -1,81 +1,116 @@
 <template>
-<nav>
+    <nav>
 <v-toolbar app :fixed="toolbar.fixed" :clipped-left="toolbar.clippedLeft" color="black">
 <v-toolbar-side-icon class= "white--text" @click.stop="toggleMiniDrawer"></v-toolbar-side-icon>
-<v-toolbar-title class="text-uppercase white--text">
+<v-toolbar-title class="text-uppercase white--text" >
 <v-btn flat to="/dashboard">
   <h1 class="font-weight-black display-1 white--text" >Activities</h1>
   
 </v-btn>
 </v-toolbar-title>
 <v-spacer></v-spacer>
-<h1 class="font-weight-regular title white--text" >Student Organization Coordinating Council</h1>
+<h1 class="font-weight-regular title white--text">{{currentUser.last_name + ', ' + currentUser.first_name}}</h1>
 </v-toolbar>
  
-<v-navigation-drawer :clipped="$vuetify.breakpoint.width > 1264" :fixed="drawer.fixed" :permanent="drawer.permanent" :mini-variant="drawer.mini" width="250" v-model="drawer.open"
-      app class="yellow lighten-1">
- <v-layout column align-center>
-</v-layout>
+<v-navigation-drawer :clipped="$vuetify.breakpoint.width > 1264" :fixed="drawer.fixed" :permanent="drawer.permanent" :mini-variant="drawer.mini" :width="250" v-model="drawer.open"
+      app class="yellow lighten-1"> 
+ <v-layout column align-center>    
+ </v-layout>
 
 <v-list>
-  <v-flex class="mt-2">
-<v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
+    <v-flex class="mt-2">
+<v-list-tile to="/dashboard">
     <v-list-tile-action>
-        <v-icon class="black--text" > {{link.icon}}</v-icon>
-        </v-list-tile-action>
+      <v-icon class="black--text">dashboard</v-icon>
+         </v-list-tile-action>
         <v-list-tile-content>
-        <v-list-tile-title class="black--text">{{link.text}}</v-list-tile-title>
-        
+        <v-list-tile-title class="black--text">Dashboard</v-list-tile-title>
     </v-list-tile-content>
+</v-list-tile>
+
+<v-list-tile to="/socc/postER_socc">
+    <v-list-tile-action>
+      <v-icon class="black--text">notifcation</v-icon>
+         </v-list-tile-action>
+        <v-list-tile-content>
+        <v-list-tile-title class="black--text">Post-Event Reports</v-list-tile-title>
+    </v-list-tile-content>
+</v-list-tile>
+
+<v-list-tile to="/socc/searchfile">
+    <v-list-tile-action>
+      <v-icon class="black--text">search</v-icon>
+         </v-list-tile-action>
+        <v-list-tile-content>
+        <v-list-tile-title class="black--text">Search</v-list-tile-title>
+    </v-list-tile-content>
+</v-list-tile>
 
 
+<v-list-tile to="/socc/Password_socc">
+    <v-list-tile-action>
+      <v-icon class="black--text">lock</v-icon>
+         </v-list-tile-action>
+        <v-list-tile-content>
+        <v-list-tile-title class="black--text">Change Password</v-list-tile-title>
+    </v-list-tile-content>
+</v-list-tile>
+
+
+<v-list-tile @click="logoutUser">
+    <v-list-tile-action>
+      <v-icon class="black--text">exit_to_app</v-icon>
+         </v-list-tile-action>
+        <v-list-tile-content >
+        <v-list-tile-title class="black--text">Sign Out</v-list-tile-title>
+    </v-list-tile-content>
 </v-list-tile>
 </v-flex>
 </v-list>
+
 </v-navigation-drawer>
 </nav>
 </template>
 
 <script>
+import axios from 'axios'
+import { mapState } from 'vuex';
+
 export default {
-    
-    data(){
-        return{
-            drawer: {
-      // sets the open status of the drawer
-      open: true,
-      // sets if the drawer is shown above (false) or below (true) the toolbar
-      clipped: false,
-      // sets if the drawer is CSS positioned as 'fixed'
-      fixed: true,
-      // sets if the drawer remains visible all the time (true) or not (false)
-      permanent: true,
-      // sets the drawer to the mini variant, showing only icons, of itself (true) 
-      // or showing the full drawer (false)
-      mini: true
-    },
-    toolbar: {
-      //
-      fixed: true,
-      // sets if the toolbar contents is leaving space for drawer (false) or not (true)
-      clippedLeft: true
-    },
-            show:true,
-            links: [
-                {icon: 'dashboard', text: 'Dashboard', route: '/dashboard'},
-                {icon: 'notifications', text: 'Post-Event Reports', route:'/socc/postER_socc'},
-                {icon: 'search', text: 'Search', route:'/socc/searchfile'},
-                {icon: 'lock', text: 'Change Password', route:'/socc/Password_socc'},
-                {icon: 'exit_to_app', text: 'Sign Out', route: '/login'}
-            ]
-            
-        }
+  data(){
+    return{
+      drawer: {
+        // sets the open status of the drawer
+        open: true,
+        // sets if the drawer is shown above (false) or below (true) the toolbar
+        clipped: true,
+        // sets if the drawer is CSS positioned as 'fixed'
+        fixed: true,
+        // sets if the drawer remains visible all the time (true) or not (false)
+        permanent: true,
+        // sets the drawer to the mini variant, showing only icons, of itself (true) 
+        // or showing the full drawer (false)
+        mini: true
+      },
+      toolbar: {
+        //
+        fixed: true,
+        // sets if the toolbar contents is leaving space for drawer (false) or not (true)
+        clippedLeft: true
+      }
     }
-    ,
+    },
     methods: {
-    toggleMiniDrawer () {
-      this.drawer.mini = !this.drawer.mini
+      toggleMiniDrawer () {
+        this.drawer.mini = !this.drawer.mini
+      },
+      logoutUser () {
+        this.$store.dispatch("logoutUser");
+      }
+      },
+    computed: {
+      ...mapState(['currentUser'])
     }
-    }
-}
+};
+
 </script>

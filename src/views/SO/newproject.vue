@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Navbar />
+
     <v-layout wrap row mt-4 align-center justify-center>
       <v-card class="my-auto pa-4">
         <v-card-title class="display-1 font-weight-medium ml-0">Post-Event Form:</v-card-title>
@@ -95,11 +95,11 @@
   </v-app>
 </template>
   <script>
-import Navbar from "@/components/navbar_so";
+
 
 export default {
   name: "form_SO",
-  components: { Navbar },
+  components: {  },
  
   data() {
     return {  

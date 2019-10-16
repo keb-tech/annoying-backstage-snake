@@ -1,6 +1,6 @@
 <template>
 <v-app class="pa-4">
-  <Navbar/>
+
   <v-content>
   <div>
       <p></p>
@@ -80,11 +80,10 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar_osa'
 
 export default{
   name: 'SPReport_OSA',
-  components: { Navbar },
+  components: {  },
     data: () => ({
  snackbar: false,
  snackbar2: false,

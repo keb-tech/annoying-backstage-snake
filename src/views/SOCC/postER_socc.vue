@@ -1,6 +1,5 @@
 <template>
 <v-app class="pa-4">
-  <Navbar/>
  <v-content class="mt-4">
     <v-card class="my-auto width:1000px">
     <v-card-title>
@@ -39,11 +38,10 @@
 </v-app>
 </template>
 <script>
-import Navbar from '@/components/navbar_socc'
 
 export default{
-  name: 'Navbar_SOCC',
-  components: { Navbar },
+  // name: 'Navbar_SOCC',
+  components: {  },
   data() {
     return {
       items: [
