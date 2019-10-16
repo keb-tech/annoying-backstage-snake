@@ -15,7 +15,7 @@
         </template>
         <v-card>
           <v-card-title>
-            <span class="headline">{{ formTitle }}</span>
+          <span class="headline">{{ formTitle }}</span>
           </v-card-title>
            <v-form ref="form" :lazy-validation="lazy" v-model="valid">
           <v-card-text>
@@ -121,6 +121,7 @@ export default{
       roles:['Student Organization', 'Student Organization Coordinating Council'],
         type: ['University-wide Student Organization', 'College-based Student Organization'],
         college: [ 
+          'None',
           'Faculty of Sacred Theology',
           'Faculty of Philosophy',
           'Faculty of Canon Law',
